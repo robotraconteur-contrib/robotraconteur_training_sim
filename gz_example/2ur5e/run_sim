@@ -1,0 +1,24 @@
+SCRIPT=`realpath -s $0`
+BASEDIR=`dirname $SCRIPT`
+
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$BASEDIR/../models
+
+gnome-terminal -- $CONDA_PREFIX/bin/gazebo --verbose tsp_world.world -s libgazebo_robotraconteur_server_plugin.so --robotraconteur-server-tcp-port=11346
+
+sleep 5s
+python initialization.py
+
+cd $BASEDIR/../robot_config
+gnome-terminal -- gazebo_model_robotraconteur_driver --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer --robotraconteur-tcp-port=52511 --robotraconteur-nodename=ur5e1_robot --model-name=ur5e1 --robot-info-file=ur5e1_robot_default_config.yml
+gnome-terminal -- gazebo_model_robotraconteur_driver --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer --robotraconteur-tcp-port=52512 --robotraconteur-nodename=ur5e2_robot --model-name=ur5e2 --robot-info-file=ur5e2_robot_default_config.yml &
+
+cd $BASEDIR/../2ur5e
+sleep 3s
+python home.py
+
+
+
+
+
+
+

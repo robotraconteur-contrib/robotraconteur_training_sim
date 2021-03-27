@@ -1,9 +1,0 @@
-cd ~/Gazebo_bin_local/
-gnome-terminal --tab -e ./run_ur5e1_driver.sh
-gnome-terminal --tab -e ./run_ur5e2_driver.sh
-
-
-
-
-
-
