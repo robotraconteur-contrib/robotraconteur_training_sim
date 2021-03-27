@@ -1,0 +1,129 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='conveyor'>
+    <link name='body'>
+      <self_collide>0</self_collide>
+      <enable_wind>0</enable_wind>
+      <kinematic>0</kinematic>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <gravity>1</gravity>
+      <inertial>
+        <mass>10</mass>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <mesh>
+            <uri>model://conveyor/conveyor.stl</uri>
+            <scale>0.9 1.7 0.68</scale>
+          </mesh>
+        </geometry>
+        <pose frame=''>-0.6 -1 0.9 0 -0 0</pose>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+    </link>  
+
+    <link name='belt'>
+      <pose frame=''>-0.27 2.88 0.925 0 -0 1.57</pose>
+      <inertial>
+        <inertia>
+          <ixx>3.8185</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1781.5</iyy>
+          <iyz>0</iyz>
+          <izz>1784.72</izz>
+        </inertia>
+        <mass>10</mass>
+      </inertial>
+      <visual name='belt_collision'>
+        <geometry>
+          <box>
+            <size>7.77 0.5 0.006</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/DarkGrey</name>
+          </script>
+        </material>
+      </visual>
+      <collision name='belt_collision'>
+        <geometry>
+            <box>
+              <size>7.8 0.6 0.9</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 -0.45 0 -0 0</pose>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+            </ode>
+            <torsional>
+              <coefficient>1000</coefficient>
+              <patch_radius>0.1</patch_radius>
+              <ode/>
+            </torsional>
+          </friction>
+          <contact>
+            <ode/>
+          </contact>
+          <bounce/>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+      <self_collide>0</self_collide>
+      <enable_wind>0</enable_wind>
+      <kinematic>0</kinematic>
+    </link>
+
+    <joint name='belt_joint' type='fixed'>
+      <parent>body</parent>
+      <child>belt</child>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <use_parent_model_frame>0</use_parent_model_frame>
+        <limit>
+          <lower>0</lower>
+          <upper>1</upper>
+          <effort>-1</effort>
+          <velocity>-1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+          <damping>0</damping>
+          <friction>0</friction>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <suspension>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </suspension>
+        </ode>
+      </physics>
+    </joint>
+
+    <static>1</static>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>
