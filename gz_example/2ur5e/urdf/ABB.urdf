@@ -1,0 +1,204 @@
+<?xml version="1.0" ?>
+<robot name="ABB1200">
+  <joint name="ABB1200_joint_1" type="revolute">
+    <parent link="ABB1200_base_link"/>
+    <child link="ABB1200_link_1"/>
+    <origin rpy="0 0 0" xyz="0     0     0.3991"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-2.967" upper="2.967" velocity="5.027"/>
+  </joint>
+  <joint name="ABB1200_joint_2" type="revolute">
+    <parent link="ABB1200_link_1"/>
+    <child link="ABB1200_link_2"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.745" upper="2.269" velocity="4.189"/>
+  </joint>
+  <joint name="ABB1200_joint_3" type="revolute">
+    <parent link="ABB1200_link_2"/>
+    <child link="ABB1200_link_3"/>
+    <origin rpy="0 0 0" xyz="0    0    0.448"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-3.491" upper="1.222" velocity="5.236"/>
+  </joint>
+  <joint name="ABB1200_joint_4" type="revolute">
+    <parent link="ABB1200_link_3"/>
+    <child link="ABB1200_link_4"/>
+    <origin rpy="0 0 0" xyz="0    0    0.042"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-4.712" upper="4.712" velocity="6.981"/>
+  </joint>
+  <joint name="ABB1200_joint_5" type="revolute">
+    <parent link="ABB1200_link_4"/>
+    <child link="ABB1200_link_5"/>
+    <origin rpy="0 0 0" xyz="0.451 0    0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-2.269" upper="2.269" velocity="7.069"/>
+  </joint>
+  <joint name="ABB1200_joint_6" type="revolute">
+    <parent link="ABB1200_link_5"/>
+    <child link="ABB1200_link_6"/>
+    <origin rpy="0 0 0" xyz="0.082 0    0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-6.283" upper="6.283" velocity="10.472"/>
+  </joint>
+  <joint name="ABB1200_pedestal_JOINT_0" type="fixed">
+    <parent link="ABB1200_pedestal"/>
+    <child link="ABB1200_base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 0"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+  <link name="ABB1200_base_link">
+    <inertial>
+      <mass value="13.7742"/>
+      <origin rpy="0 0 0" xyz="-0.02898  0.00059  0.11273"/>
+      <inertia ixx="0.101998" ixy="0.000495482" ixz="0.000311158" iyy="0.13969" iyz="-0.000245375" izz="0.130433"/>
+    </inertial>
+    <collision name="ABB1200_base_link_fixed_joint_lump__collision_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/collision/base_link.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ABB1200_base_link_fixed_joint_lump__visual_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/visual/base_link.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="ABB1200_pedestal">
+    <inertial>
+      <mass value="1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+    </inertial>
+    <collision name="ABB1200_collision">
+      <origin rpy="0 0 0" xyz="0   0  -0.4"/>
+      <geometry>
+        <cylinder length="0.9" radius="0.2"/>
+      </geometry>
+    </collision>
+    <visual name="ABB1200_visual">
+      <origin rpy="0 0 0" xyz="0   0  -0.5"/>
+      <geometry>
+        <cylinder length="1.0" radius="0.2"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="ABB1200_link_1">
+    <inertial>
+      <mass value="11.8419"/>
+      <origin rpy="0 0 0" xyz="0.00087 -0.00063 -0.06288"/>
+      <inertia ixx="0.11194" ixy="-4.54988e-05" ixz="0.000280961" iyy="0.0915159" iyz="-0.000109905" izz="0.0876456"/>
+    </inertial>
+    <collision name="ABB1200_link_1_fixed_joint_lump__collision_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/collision/link_1.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ABB1200_link_1_fixed_joint_lump__visual_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/visual/link_1.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="ABB1200_link_2">
+    <inertial>
+      <mass value="17.5394"/>
+      <origin rpy="0 0 0" xyz="-0.00092 -0.00049  0.25005"/>
+      <inertia ixx="0.493558" ixy="1.32136e-05" ixz="0.000209024" iyy="0.462939" iyz="-0.00179901" izz="0.0894214"/>
+    </inertial>
+    <collision name="ABB1200_link_2_fixed_joint_lump__collision_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/collision/link_2.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ABB1200_link_2_fixed_joint_lump__visual_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/visual/link_2.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="ABB1200_link_3">
+    <inertial>
+      <mass value="7.46365"/>
+      <origin rpy="0 0 0" xyz="0.09958 0.00114 0.03233"/>
+      <inertia ixx="0.0252424" ixy="0.000142737" ixz="-0.00565542" iyy="0.0906438" iyz="0.000142213" izz="0.0825079"/>
+    </inertial>
+    <collision name="ABB1200_link_3_fixed_joint_lump__collision_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/collision/link_3.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ABB1200_link_3_fixed_joint_lump__visual_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/visual/link_3.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="ABB1200_link_4">
+    <inertial>
+      <mass value="2.74436"/>
+      <origin rpy="0 0 0" xyz="0.38167 0.00126 0.00516"/>
+      <inertia ixx="0.00573099" ixy="-0.000131119" ixz="0.000380232" iyy="0.0118352" iyz="-2.26565e-05" izz="0.0114428"/>
+    </inertial>
+    <collision name="ABB1200_link_4_fixed_joint_lump__collision_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/collision/link_4.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ABB1200_link_4_fixed_joint_lump__visual_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/visual/link_4.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="ABB1200_link_5">
+    <inertial>
+      <mass value="0.62953"/>
+      <origin rpy="0 0 0" xyz="0.01119 -0.00105  0.0001"/>
+      <inertia ixx="0.000502815" ixy="-1.03173e-05" ixz="-8.74347e-08" iyy="0.00108856" iyz="2.07657e-07" izz="0.000918873"/>
+    </inertial>
+    <collision name="ABB1200_link_5_fixed_joint_lump__collision_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/collision/link_5.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ABB1200_link_5_fixed_joint_lump__visual_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/visual/link_5.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="ABB1200_link_6">
+    <inertial>
+      <mass value="0.137"/>
+      <origin rpy="0 0 0" xyz="-0.00706 -0.00017  0"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <collision name="ABB1200_link_6_fixed_joint_lump__collision_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/collision/link_6.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="ABB1200_link_6_fixed_joint_lump__visual_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://ABB1200/meshes/visual/link_6.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>

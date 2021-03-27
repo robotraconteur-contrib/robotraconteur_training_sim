@@ -1,0 +1,164 @@
+device_info:
+  device:
+    name: ur5e1_robot
+  manufacturer:
+    name: Universal_Robots
+    uuid: d80db3c2-3de8-41e3-97f9-62765a7063b8
+  model:
+    name: UR5e1
+    uuid: 1d3f5111-01fa-4ecf-a11e-76810d5e1dde
+  user_description: Universal Robots UR5e1 Robot
+  serial_number: 123456789
+  device_classes:
+    - class_identifier:
+        name: robot
+        uuid: 39b513e7-21b9-4b49-8654-7537473030eb
+      subclasses: 
+        - serial
+        - serial_six_axis
+        - cobot
+  implemented_types:
+    - com.robotraconteur.robotics.robot.Robot
+robot_type: serial
+robot_capabilities:
+- jog_command
+- trajectory_command
+- position_command
+- velocity_command
+chains:
+- kin_chain_identifier: robot_arm
+  H:
+  - x: 0.0
+    y: 0.0
+    z: 1.0
+  - x: 0.0
+    y: -1.0
+    z: 0.0
+  - x: 0.0
+    y: -1.0
+    z: 0.0
+  - x: 0.0
+    y: -1.0
+    z: 0.0
+  - x: 0.0
+    y: 0.0
+    z: -1.0
+  - x: 0.0
+    y: -1.0
+    z: 0.0
+  P:
+  - x: 0.0
+    y: 0.0
+    z: 0.0  
+  - x: 0.0
+    y: 0.0
+    z: 0.1625
+  - x: -0.425
+    y: 0.0
+    z: 0.0
+  - x: -0.3922
+    y: 0.0
+    z: 0.0
+  - x: 0.0
+    y: -0.1333
+    z: 0.0
+  - x: 0.0
+    y: 0.0
+    z: -0.0997
+  - x: 0.0
+    y: -0.0996
+    z: 0.0
+
+  flange_identifier: tool0
+  flange_pose:
+    orientation:
+      w: 0.0
+      x: 0.0
+      y: 0.7071067811882787
+      z: 0.7071067811848163
+    position:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  joint_numbers:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  link_identifiers:
+  - base_link
+  - shoulder_link
+  - upper_arm_link
+  - forearm_link
+  - wrist_1_link
+  - wrist_2_link
+  - wrist_3_link
+joint_info:
+- default_effort_units: newton_meter
+  default_units: radian
+  joint_identifier: shoulder_pan_joint
+  joint_limits:
+    effort: 150.0
+    lower: -6.28318530718
+    upper: 6.28318530718
+    velocity: 3.15
+    acceleration: 3.15
+  joint_type: revolute
+  passive: false
+- default_effort_units: newton_meter
+  default_units: radian
+  joint_identifier: shoulder_lift_joint
+  joint_limits:
+    effort: 150.0
+    lower: -6.28318530718
+    upper: 6.28318530718
+    velocity: 3.15
+    acceleration: 3.15
+  joint_type: revolute
+  passive: false
+- default_effort_units: newton_meter
+  default_units: radian
+  joint_identifier: elbow_joint
+  joint_limits:
+    effort: 150.0
+    lower: -3.14159265359
+    upper: 3.14159265359
+    velocity: 3.15
+    acceleration: 3.15
+  joint_type: revolute
+  passive: false
+- default_effort_units: newton_meter
+  default_units: radian
+  joint_identifier: wrist_1_joint
+  joint_limits:
+    effort: 28.0
+    lower: -6.28318530718
+    upper: 6.28318530718
+    velocity: 3.2
+    acceleration: 3.2
+  joint_type: revolute
+  passive: false
+- default_effort_units: newton_meter
+  default_units: radian
+  joint_identifier: wrist_2_joint
+  joint_limits:
+    effort: 28.0
+    lower: -6.28318530718
+    upper: 6.28318530718
+    velocity: 3.2
+    acceleration: 3.2
+  joint_type: revolute
+  passive: false
+- default_effort_units: newton_meter
+  default_units: radian
+  joint_identifier: wrist_3_joint
+  joint_limits:
+    effort: 28.0
+    lower: -6.28318530718
+    upper: 6.28318530718
+    velocity: 3.2
+    acceleration: 3.2
+  joint_type: revolute
+  passive: false

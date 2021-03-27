@@ -1,0 +1,219 @@
+<?xml version="1.0" ?>
+<robot name="Staubli">
+  <joint name="staubli_joint_1" type="revolute">
+    <parent link="staubli_base_link"/>
+    <child link="staubli_link_1"/>
+    <origin rpy="0 0 0" xyz="0   0   0.32"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="40.0" lower="-3.14159" upper="3.14159" velocity="5.00909"/>
+  </joint>
+  <joint name="staubli_joint_2" type="revolute">
+    <parent link="staubli_link_1"/>
+    <child link="staubli_link_2"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="11.0" lower="-2.18166" upper="2.18166" velocity="5.00909"/>
+  </joint>
+  <joint name="staubli_joint_3" type="revolute">
+    <parent link="staubli_link_2"/>
+    <child link="staubli_link_3"/>
+    <origin rpy="0 0 0" xyz="0      0.035   0.22497"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="8.0" lower="-2.40855" upper="2.40855" velocity="7.50492"/>
+  </joint>
+  <joint name="staubli_joint_4" type="revolute">
+    <parent link="staubli_link_3"/>
+    <child link="staubli_link_4"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="4.0" lower="-4.71239" upper="4.71239" velocity="7.15585"/>
+  </joint>
+  <joint name="staubli_joint_5" type="revolute">
+    <parent link="staubli_link_4"/>
+    <child link="staubli_link_5"/>
+    <origin rpy="0 0 0" xyz="0      0      0.22503"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="2.6" lower="-2.0944" upper="2.33001" velocity="5.58505"/>
+  </joint>
+  <joint name="staubli_joint_6" type="revolute">
+    <parent link="staubli_link_5"/>
+    <child link="staubli_link_6"/>
+    <origin rpy="0 0 0" xyz="0    0    0.065"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1.4" lower="-4.71239" upper="4.71239" velocity="12.2173"/>
+  </joint>
+  <joint name="Staubli_pedestal_JOINT_0" type="fixed">
+    <parent link="staubli_pedestal"/>
+    <child link="staubli_base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 0"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+  <link name="staubli_base_link">
+    <inertial>
+      <mass value="4"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.00443333" ixy="0" ixz="0" iyy="0.00443333" iyz="0" izz="0.0072"/>
+    </inertial>
+    <visual name="staubli_base_link_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/visual/base_link.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 0.607843137255 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/collision/base_link.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="staubli_pedestal">
+    <inertial>
+      <mass value="1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+    </inertial>
+    <visual name="staubli_visual">
+      <origin rpy="0 0 0" xyz="0   0  -0.5"/>
+      <geometry>
+        <cylinder length="1" radius="0.25"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="staubli_link_1">
+    <inertial>
+      <mass value="8.8174"/>
+      <origin rpy="0 0 0" xyz="-0.00029  0.00931 -0.03386"/>
+      <inertia ixx="0.0501496" ixy="0.000391605" ixz="400337" iyy="0.0433329" iyz="0.00381701" izz="0.0328393"/>
+    </inertial>
+    <visual name="staubli_link_1_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/visual/link_1.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 0.607843137255 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/collision/link_1.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="staubli_link_2">
+    <inertial>
+      <mass value="6.12815"/>
+      <origin rpy="0 0 0" xyz="8.0000e-05 1.4710e-01 1.0312e-01"/>
+      <inertia ixx="0.0564107" ixy="-5.8219e-05" ixz="8.0107e-05" iyy="0.0600888" iyz="-0.000308218" izz="0.0102893"/>
+    </inertial>
+    <visual name="staubli_link_2_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/visual/link_2.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 0.607843137255 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/collision/link_2.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="staubli_link_3">
+    <inertial>
+      <mass value="3.36342"/>
+      <origin rpy="0 0 0" xyz="0.00765  0.01281 -0.01551"/>
+      <inertia ixx="0.00859282" ixy="9.8473e-05" ixz="-0.000358456" iyy="0.00889432" iyz="-0.000370698" izz="0.00674036"/>
+    </inertial>
+    <visual name="staubli_link_3_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/visual/link_3.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 0.607843137255 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/collision/link_3.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="staubli_link_4">
+    <inertial>
+      <mass value="2.63788"/>
+      <origin rpy="0 0 0" xyz="-0.00283  0       0.14235"/>
+      <inertia ixx="0.00992097" ixy="2.8e-08" ixz="-0.000208997" iyy="0.00881283" iyz="9.54e-07" izz="0.00406691"/>
+    </inertial>
+    <visual name="staubli_link_4_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/visual/link_4.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 0.607843137255 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/collision/link_4.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="staubli_link_5">
+    <inertial>
+      <mass value="0.21237"/>
+      <origin rpy="0 0 0" xyz="0      0      0.01975"/>
+      <inertia ixx="0.000117818" ixy="0" ixz="-3e-09" iyy="0.000132032" iyz="-3.45e-09" izz="5.4314e-05"/>
+    </inertial>
+    <visual name="staubli_link_5_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/visual/link_5.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.529411764706 0.521568627451 0.505882352941 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/collision/link_5.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="staubli_link_6">
+    <inertial>
+      <mass value="0.01746"/>
+      <origin rpy="0 0 0" xyz="-0.00023  0      -0.00462"/>
+      <inertia ixx="2.221e-06" ixy="0" ixz="-5e-09" iyy="2.156e-06" iyz="0" izz="4.187e-06"/>
+    </inertial>
+    <visual name="staubli_link_6_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/visual/link_6.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.529411764706 0.521568627451 0.505882352941 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://Staubli/meshes/collision/link_6.stl"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

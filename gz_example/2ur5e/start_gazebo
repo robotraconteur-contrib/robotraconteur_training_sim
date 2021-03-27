@@ -1,0 +1,2 @@
+gazebo --verbose tsp_world.world -s gazebo_robotraconteur_server_plugin.dll --robotraconteur-server-tcp-port=11346
+

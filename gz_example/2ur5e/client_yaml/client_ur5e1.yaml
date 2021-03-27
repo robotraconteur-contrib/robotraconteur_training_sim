@@ -1,0 +1,31 @@
+calibration_R:
+- 0.0
+- 1.0
+- 0.0
+- -1.0
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- 1.0
+joint_threshold: 0.1
+calibration_speed: 0.04
+calibration_start:
+- -0.15
+- -0.5
+- 0.12
+gripper_orientation: 0.7853981633974483
+height: 1.
+home:
+- -0.3
+- 0.0
+- 0.2
+obj_namelists:
+- round_bottle
+pick_height: 0.08
+place_height: 0.09
+robot_command: position_command
+robot_name: ur5e1
+tag_position: 0.01
+tool_url: None
+url: rr+tcp://localhost:52511?service=robot

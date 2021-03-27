@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<robot name="conveyor">
+  <joint name="conveyor__belt_joint" type="fixed">
+    <parent link="conveyor__body"/>
+    <child link="conveyor__belt"/>
+    <origin rpy="0   0   1.57" xyz="-0.27   2.88   0.925"/>
+    <axis xyz="7.9e-04 -1.0e+00  0.0e+00"/>
+    <limit effort="-1.0" lower="0.0" upper="1.0" velocity="-1.0"/>
+  </joint>
+  <link name="conveyor__body">
+    <inertial>
+      <mass value="10"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+    </inertial>
+    <visual name="conveyor__visual">
+      <origin rpy="0 0 0" xyz="-0.6 -1   0.9"/>
+      <geometry>
+        <mesh filename="/home/iamnotedible/RR_Project/simulation/models/conveyor/conveyor.stl" scale="0.9 1.7 0.68"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="conveyor__belt">
+    <inertial>
+      <mass value="10"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="3.8185" ixy="0" ixz="0" iyy="1781.5" iyz="0" izz="1784.72"/>
+    </inertial>
+    <collision name="conveyor__belt_collision">
+      <origin rpy="0 0 0" xyz="0    0   -0.45"/>
+      <geometry>
+        <box size="7.8 0.6 0.9"/>
+      </geometry>
+    </collision>
+    <visual name="conveyor__belt_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="7.77 0.5 0.006"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>

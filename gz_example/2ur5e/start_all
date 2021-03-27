@@ -1,0 +1,16 @@
+source ~/ros_ws/devel/setup.bash
+gnome-terminal --tab -e ./start_gazebo
+sleep 5s
+gnome-terminal --tab -e ./initialization.py
+gnome-terminal -e ./start_robot_driver
+cd ~/RR_Project/simulation/2ur5e
+
+sleep 3s
+gnome-terminal --tab -e ./home.py
+source ~/ros_ws/devel/setup.bash
+gnome-terminal --tab -e ./vacuum.py
+
+
+
+
+

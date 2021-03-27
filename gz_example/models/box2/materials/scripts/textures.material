@@ -1,0 +1,15 @@
+material box2color
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture box.png
+      }
+    }
+  }
+}
+
+

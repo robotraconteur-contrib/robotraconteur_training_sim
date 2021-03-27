@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<robot name="box2">
+  <link name="box2__body">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="box2__collision_0">
+      <origin rpy="0 0 0" xyz="-0.005  0     0"/>
+      <geometry>
+        <box size="0.42 0.21 0.005"/>
+      </geometry>
+    </collision>
+    <visual name="box2__visual">
+      <origin rpy="0 0 0" xyz="0    0    0.015"/>
+      <geometry>
+        <mesh filename="model://box2/model.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>

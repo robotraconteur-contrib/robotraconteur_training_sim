@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+<robot name="tx60">
+  <joint name="tx60_joint_1" type="revolute">
+    <parent link="tx60_base_link"/>
+    <child link="tx60_link_1"/>
+    <origin rpy="0 0 0" xyz="0    0    0.375"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="126.0" lower="-3.14159" upper="3.14159" velocity="7.59218"/>
+  </joint>
+  <joint name="tx60_joint_2" type="revolute">
+    <parent link="tx60_link_1"/>
+    <child link="tx60_link_2"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="71.0" lower="-2.22529" upper="2.22529" velocity="7.15585"/>
+  </joint>
+  <joint name="tx60_joint_3" type="revolute">
+    <parent link="tx60_link_2"/>
+    <child link="tx60_link_3"/>
+    <origin rpy="0 0 0" xyz="0      0.02    0.28999"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="38.0" lower="-2.48709" upper="2.48709" velocity="9.42478"/>
+  </joint>
+  <joint name="tx60_joint_4" type="revolute">
+    <parent link="tx60_link_3"/>
+    <child link="tx60_link_4"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="7.0" lower="-4.71239" upper="4.71239" velocity="17.366"/>
+  </joint>
+  <joint name="tx60_joint_5" type="revolute">
+    <parent link="tx60_link_4"/>
+    <child link="tx60_link_5"/>
+    <origin rpy="0 0 0" xyz="0   0   0.31"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="8.0" lower="-2.13803" upper="2.31256" velocity="18.5878"/>
+  </joint>
+  <joint name="tx60_joint_6" type="revolute">
+    <parent link="tx60_link_5"/>
+    <child link="tx60_link_6"/>
+    <origin rpy="0 0 0" xyz="0   0   0.07"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="2.0" lower="-4.71239" upper="4.71239" velocity="25.22"/>
+  </joint>
+  <joint name="tx60_link_0_JOINT_0" type="fixed">
+    <parent link="tx60_link_0"/>
+    <child link="tx60_base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 0"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+  <link name="tx60_base_link">
+    <inertial>
+      <mass value="4.65972"/>
+      <origin rpy="0 0 0" xyz="-0.00257 -0.00039  0.08786"/>
+      <inertia ixx="0.0231978" ixy="0.00023234" ixz="0.00162421" iyy="0.0262132" iyz="8.092e-05" izz="0.022863"/>
+    </inertial>
+    <collision name="tx60_base_link_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/collision/base_link.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="tx60_base_link_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/visual/base_link.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="tx60_link_0">
+    <inertial>
+      <mass value="1"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+    </inertial>
+    <visual name="tx60_visual">
+      <origin rpy="0 0 0" xyz="0   0  -0.5"/>
+      <geometry>
+        <cylinder length="1" radius="0.2"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="tx60_link_1">
+    <inertial>
+      <mass value="6.99103"/>
+      <origin rpy="0 0 0" xyz="0       0.02467 -0.05265"/>
+      <inertia ixx="0.0567295" ixy="3.7e-07" ixz="-4.9e-07" iyy="0.0490924" iyz="0.0101607" izz="0.0345756"/>
+    </inertial>
+    <collision name="tx60_link_1_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/collision/link_1.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="tx60_link_1_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/visual/link_1.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="tx60_link_2">
+    <inertial>
+      <mass value="4.29177"/>
+      <origin rpy="0 0 0" xyz="0      0.17159 0.12393"/>
+      <inertia ixx="0.0702855" ixy="3.7e-07" ixz="-3.3e-07" iyy="0.0759792" iyz="-0.00033734" izz="0.00928775"/>
+    </inertial>
+    <collision name="tx60_link_2_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/collision/link_2.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="tx60_link_2_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/visual/link_2.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="tx60_link_3">
+    <inertial>
+      <mass value="4.52768"/>
+      <origin rpy="0 0 0" xyz="0.00424  0.02553 -0.00735"/>
+      <inertia ixx="0.0246922" ixy="0.00032528" ixz="0.00063194" iyy="0.0222265" iyz="-0.00155762" izz="0.0165737"/>
+    </inertial>
+    <collision name="tx60_link_3_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/collision/link_3.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="tx60_link_3_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/visual/link_3.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="tx60_link_4">
+    <inertial>
+      <mass value="2.16976"/>
+      <origin rpy="0 0 0" xyz="-0.00156  0       0.214"/>
+      <inertia ixx="0.0116148" ixy="0" ixz="-0.00034929" iyy="0.0103362" iyz="1e-08" izz="0.00409557"/>
+    </inertial>
+    <collision name="tx60_link_4_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/collision/link_4.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="tx60_link_4_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/visual/link_4.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="tx60_link_5">
+    <inertial>
+      <mass value="0.162547"/>
+      <origin rpy="0 0 0" xyz="0      0      0.01269"/>
+      <inertia ixx="0.00012557" ixy="0" ixz="0" iyy="0.00013289" iyz="0" izz="6.342e-05"/>
+    </inertial>
+    <collision name="tx60_link_5_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/collision/link_5.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="tx60_link_5_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/visual/link_5.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="tx60_link_6">
+    <inertial>
+      <mass value="0.0082"/>
+      <origin rpy="0 0 0" xyz="-0.00022  0      -0.00597"/>
+      <inertia ixx="9.6e-07" ixy="0" ixz="0" iyy="9.3e-07" iyz="0" izz="1.54e-06"/>
+    </inertial>
+    <collision name="tx60_link_6_collision">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/collision/link_6.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <visual name="tx60_link_6_visual">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://tx60/meshes/visual/link_6.stl" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
