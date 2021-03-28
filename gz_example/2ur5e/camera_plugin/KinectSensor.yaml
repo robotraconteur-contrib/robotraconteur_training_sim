@@ -1,0 +1,38 @@
+device_info:
+  device:
+    name: kinect_azure
+  manufacturer:
+    name: Microsoft
+    uuid: 6768680f-f282-4735-aa3c-8793f5f6a563
+  model:
+    name: Kinect_Azure
+    uuid: 5162e021-94ac-4383-8466-3e5006e94c00
+  serial_number: 123456789
+  device_classes:
+    - class_identifier:
+        name: usb_camera
+        uuid: b25bf959-7ba9-46be-989e-5529026a00da
+      subclasses:
+        - webcam
+  implemented_types:
+    - com.robotraconteur.imaging.Camera
+calibration:
+  image_size:
+    width: 1280
+    height: 720
+  distortion_info:
+    k1: 0.03550292
+    k2: -0.05709899
+    p1: -0.0003998
+    p2: 0.01539429
+    k3: 0.06705821
+  K:
+    - 602.9276
+    - 0.0
+    - 0.0
+    - 0.0
+    - 600.9166
+    - 0.0
+    - 675.4508
+    - 343.8307
+    - 1.0

@@ -29,7 +29,7 @@
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
       </visual>
-      <collision name='base_link_inertia_collision'>
+      <!-- <collision name='base_link_inertia_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose>0 0 0 0 -0 0</pose>
@@ -84,7 +84,7 @@
             </bullet>
           </contact>
         </surface>
-      </collision>
+      </collision> -->
     </link>
     <link name='forearm_link'>
       <pose>-0.425 -1e-06 0.1625 1.5708 -0 0</pose>
@@ -116,7 +116,7 @@
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
       </visual>
-      <collision name='forearm_link_collision'>
+      <!-- <collision name='forearm_link_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose>0 0 0.007 1.5708 0 -1.5708</pose>
@@ -171,7 +171,7 @@
             </bullet>
           </contact>
         </surface>
-      </collision>
+      </collision> -->
     </link>
     <link name='link_0'>
       <inertial>
@@ -233,7 +233,7 @@
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
       </visual>
-      <collision name='shoulder_link_collision'>
+      <!-- <collision name='shoulder_link_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose>0 0 0 0 -0 3.14159</pose>
@@ -288,7 +288,7 @@
             </bullet>
           </contact>
         </surface>
-      </collision>
+      </collision> -->
     </link>
     <link name='upper_arm_link'>
       <pose>0 0 0.1625 1.5708 -0 0</pose>
@@ -320,7 +320,7 @@
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
       </visual>
-      <collision name='upper_arm_link_collision'>
+      <!-- <collision name='upper_arm_link_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose>0 0 0.138 1.5708 0 -1.5708</pose>
@@ -375,7 +375,7 @@
             </bullet>
           </contact>
         </surface>
-      </collision>
+      </collision> -->
     </link>
     <link name='wrist_1_link'>
       <pose>-0.8172 -0.133298 0.1625 1.5708 -0 0</pose>
@@ -407,7 +407,7 @@
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
       </visual>
-      <collision name='wrist_1_link_collision'>
+      <!-- <collision name='wrist_1_link_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose>0 0 -0.127 1.5708 -0 0</pose>
@@ -462,7 +462,7 @@
             </bullet>
           </contact>
         </surface>
-      </collision>
+      </collision> -->
     </link>
     <link name='wrist_2_link'>
       <pose>-0.8172 -0.133297 0.0628 -3.14159 -0 -0</pose>
@@ -494,7 +494,7 @@
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
       </visual>
-      <collision name='wrist_2_link_collision'>
+      <!-- <collision name='wrist_2_link_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose>0 0 -0.0997 0 -0 0</pose>
@@ -549,7 +549,7 @@
             </bullet>
           </contact>
         </surface>
-      </collision>
+      </collision> -->
     </link>
     <link name='wrist_3_link'>
       <pose>-0.817201 -0.232897 0.062799 1.5708 -0 0</pose>
@@ -581,7 +581,7 @@
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
       </visual>
-      <collision name='wrist_3_link_collision'>
+      <!-- <collision name='wrist_3_link_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose>0 0 -0.0989 1.5708 -0 0</pose>
@@ -636,7 +636,7 @@
             </bullet>
           </contact>
         </surface>
-      </collision>
+      </collision> -->
     </link>
     <model name='gripper'>
       <link name='body'>
