@@ -123,12 +123,12 @@ class CameraImpl(object):
         while(self._streaming):
             with self._capture_lock:
                 img = self._capture.capture_image()
-                mat = self.ImageToMat(img)
+               
                 self._seqno+=1
             
-            self.frame_stream.AsyncSendPacket(self._cv_mat_to_image(mat),lambda: None)
-            self.frame_stream_compressed.AsyncSendPacket(self._cv_mat_to_compressed_image(mat),lambda: None)
-            self.preview_stream.AsyncSendPacket(self._cv_mat_to_compressed_image(mat,70),lambda: None)
+            self.frame_stream.AsyncSendPacket(img,lambda: None)
+            #self.frame_stream_compressed.AsyncSendPacket(self._cv_mat_to_compressed_image(mat),lambda: None)
+            #self.preview_stream.AsyncSendPacket(self._cv_mat_to_compressed_image(mat,70),lambda: None)
             device_now = self._date_time_util.FillDeviceTime(self._camera_info.device_info,self._seqno)
             self.device_clock_now.OutValue = device_now
 

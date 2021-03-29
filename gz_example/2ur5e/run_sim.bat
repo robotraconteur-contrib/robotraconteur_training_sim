@@ -23,6 +23,10 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 start cmd /c gazebo_model_robotraconteur_driver --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer --robotraconteur-tcp-port=52512 --robotraconteur-nodename=ur5e2_robot --model-name=ur5e2 --robot-info-file=ur5e2_robot_default_config.yml
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+cd %~dp0\camera
+start cmd /c python camera_service.py --camera-info-file=KinectSensor.yaml
+if %errorlevel% neq 0 exit /b %errorlevel%
+
 timeout /t 5
 cd %~dp0
 if %errorlevel% neq 0 exit /b %errorlevel%
