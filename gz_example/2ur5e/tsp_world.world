@@ -21,7 +21,11 @@
       <name>box2_2</name>
       <pose>0.6 0.6 1. 0 0 1.57</pose>
     </include>
-
+    <include>
+      <uri>model://camera</uri>
+      <name>camera</name>
+      <pose>0. 0. 2. 0 0 0</pose>
+    </include>
 
     <physics type="ode">
       <max_step_size>0.001000</max_step_size>
@@ -32,6 +36,6 @@
     <gravity>
       0.0 0.0 -9.81
     </gravity>
-
+    
   </world>
 </sdf>
