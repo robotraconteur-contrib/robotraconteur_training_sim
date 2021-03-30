@@ -674,6 +674,40 @@
           <transparency>0</transparency>
           <cast_shadows>1</cast_shadows>
         </visual>
+
+        <collision name="contact_sensor_collision">
+          <pose>0 0 -0.05 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.01</radius>
+              <length>0.10</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_without_contact>true</collide_without_contact>
+            </contact>
+          </surface>
+        </collision>
+
+        <sensor name="logical_camera" type="logical_camera">
+          <pose>0. 0 0 0 1.57 3.14159</pose>
+          <logical_camera>
+            <near>0.01</near>
+            <far>0.115</far>
+            <aspect_ratio>1</aspect_ratio>
+            <horizontal_fov>1</horizontal_fov>
+          </logical_camera>
+          <always_on>1</always_on>
+          <update_rate>100</update_rate>
+          <visualize>false</visualize>
+        </sensor>
+        <sensor name="contact_sensor" type="contact">
+          <contact>
+          <collision>contact_sensor_collision</collision>          
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
       </link>
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>

@@ -1,12 +1,12 @@
 device_info:
   device:
-    name: kinect_azure
+    name: gazebo_camera
   manufacturer:
-    name: Microsoft
-    uuid: 6768680f-f282-4735-aa3c-8793f5f6a563
+    name: OSRF
+    uuid: ac7c2923-7d0c-46cc-82e5-0692c953c775
   model:
-    name: Kinect_Azure
-    uuid: 5162e021-94ac-4383-8466-3e5006e94c00
+    name: gazebo_camera
+    uuid: c513c866-574c-46ce-b486-18bfe3964b98
   serial_number: 123456789
   device_classes:
     - class_identifier:
