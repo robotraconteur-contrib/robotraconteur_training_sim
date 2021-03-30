@@ -11,7 +11,7 @@ import os
 import sys
 print(str(Path(os.path.realpath(__file__)).parent.parent.joinpath("toolbox")))
 sys.path.append(str(Path(os.path.realpath(__file__)).parent.parent.joinpath("toolbox")))
-from general_robotics_toolbox import R2q	#convert R to quaternion
+from general_robotics_toolbox import R2q,rot	#convert R to quaternion
 
 model_dir = Path(os.path.realpath(__file__)).parent.parent.joinpath("models")
 
@@ -82,6 +82,21 @@ for i in range(4):
 	H[0][-1]=box2[0]+0.05
 	H[1][-1]=box2[1]-0.15+0.1*i
 	initialize(model_sdf,model_name+str(2*i+1),H)
-    
+
+
+#Load landmark
+model_name="landmark"
+f = open(model_dir.joinpath(model_name+'/model.sdf'),'r')
+model_sdf = f.read()
+
+H=np.eye(4)
+H[0][-1]=0.2
+H[1][-1]=-0.55
+H[2][-1]=1.025
+H[0:3,0:3] = rot([1,0,0],np.pi)
+initialize(model_sdf,model_name,H)
+
+
+
 print("Done!")
 
