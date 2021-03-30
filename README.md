@@ -4,6 +4,8 @@
 
 ## Introduction
 
+![alt text](https://github.com/robotraconteur-contrib/robotraconteur_training_sim/blob/master/training_sim_window.jpg?raw=true)
+
 The Robot Raconteur Training Simulator is a Gazebo based simulator that contains several Robot Raconteur devices:
 
 * Two Universal Robots UR5e Robots
