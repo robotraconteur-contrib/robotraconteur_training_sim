@@ -48,8 +48,6 @@ url_gripper=None
 for serviceinfo2 in res:
 	if robot_name in serviceinfo2.NodeName:
 		url_gripper=serviceinfo2.ConnectionURL
-		sys.path.append('../gripper_func')
-		gripper_func = import_module(robot_name+'_gripper') 
 		break
 if url_gripper==None:
 	print('gripper service not found')

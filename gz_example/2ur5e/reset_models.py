@@ -3,7 +3,7 @@
 import numpy as np
 from RobotRaconteur.Client import *
 import sys
-sys.path.append('../../toolbox/')
+sys.path.append('toolbox/')
 from general_robotics_toolbox import R2q	#convert R to quaternion
 
 server=RRN.ConnectService('rr+tcp://localhost:11346/?service=GazeboServer')

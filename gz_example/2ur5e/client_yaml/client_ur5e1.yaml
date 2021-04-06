@@ -27,5 +27,5 @@ place_height: 0.09
 robot_command: position_command
 robot_name: ur5e1
 tag_position: 0.01
-tool_url: None
+tool_url: rr+local:///?nodeid=f13b9a98-d4c6-49ec-a38e-322dbf0cdb7d&service=gripper
 url: rr+tcp://localhost:52511?service=robot

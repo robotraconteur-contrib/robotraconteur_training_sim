@@ -8,7 +8,7 @@ import numpy as np
 from importlib import import_module
 import time, traceback, sys, yaml, argparse
 
-sys.path.append('../../')
+sys.path.append('toolbox/')
 from vel_emulate_sub import EmulatedVelocityControl
 
 def H42H3(H):
@@ -27,7 +27,7 @@ args, _ = parser.parse_known_args()
 
 robot_name=args.robot_name
 
-sys.path.append('../../toolbox')
+sys.path.append('toolbox/')
 if robot_name=='ur':
 	inv = import_module(robot_name+'_ik_sim')
 else:
@@ -39,6 +39,7 @@ from general_robotics_toolbox import Robot
 with open(r'client_yaml/client_'+robot_name+'.yaml') as file:
 	robot_yaml = yaml.load(file, Loader=yaml.FullLoader)
 url=robot_yaml['url']
+tool_url=robot_yaml['tool_url']
 home=robot_yaml['home']
 obj_namelists=robot_yaml['obj_namelists']
 pick_height=robot_yaml['pick_height']
@@ -50,7 +51,8 @@ joint_threshold=robot_yaml['joint_threshold']
 ###########Connect to corresponding services, subscription mode
 ####subscription
 robot_sub=RRN.SubscribeService(url)
-vacuum_sub=RRN.SubscribeService('rr+tcp://localhost:50000/?service=vacuumlink')
+print(tool_url)
+vacuum_sub=RRN.SubscribeService(tool_url)
 ####get client object
 robot=robot_sub.GetDefaultClientWait(1)
 vacuum_inst=vacuum_sub.GetDefaultClientWait(1)
@@ -132,8 +134,7 @@ def pick(obj):
 	jog_joint(q)
 
 	#grab it
-	print("get it")
-	vacuum_inst.vacuum(robot_name,obj.name,1)
+	vacuum_inst.close()
 	q=inv.inv(np.array([p[0],p[1],p[2]+0.1]))
 	jog_joint(q)
 	return
@@ -154,8 +155,7 @@ def place(obj,slot):
 
 	
 
-	print("dropped")
-	vacuum_inst.vacuum(robot_name,obj.name,0)
+	vacuum_inst.open()
 
 	
 	q=inv.inv(np.array([p[0],p[1],p[2]+0.05]))
