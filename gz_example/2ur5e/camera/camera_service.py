@@ -18,10 +18,10 @@ class CameraImpl(object):
         
         self._seqno = 0
 
-        self.server = RRN.ConnectService('rr+tcp://localhost:11346?service=GazeboServer')# Gazebo server
-        print(self.server.sensor_names)
-        self._capture = self.server.get_sensors(camera_sim_path)
-
+        self.server = RRN.SubscribeService('rr+tcp://localhost:11346?service=GazeboServer')# Gazebo server
+        self.server.TryGetDefaultClientWait(2)
+        camera_sim_service_path="*.sensors[" + "".join([(s if s.isalpha() else '%{:02X}'.format(ord(s))) for s in camera_sim_path]) + "]"
+        
         self._imaging_consts = RRN.GetConstants('com.robotraconteur.imaging')
         self._image_consts = RRN.GetConstants('com.robotraconteur.image')
         self._image_type = RRN.GetStructureType('com.robotraconteur.image.Image')
@@ -35,6 +35,13 @@ class CameraImpl(object):
         self._camera_info = camera_info
         self._date_time_util = DateTimeUtil(RRN)
         self._sensor_data_util = SensorDataUtil(RRN)
+
+        self._current_image = None
+
+        self._sending_frame = False
+
+        self._camera_pipe_sub = self.server.SubscribePipe("image_stream",camera_sim_service_path)
+        self._camera_pipe_sub.PipePacketReceived += self._new_packets
 
     def RRServiceObjectInit(self, ctx, service_path):
         self._downsampler = RR.BroadcastDownsampler(ctx)
@@ -57,35 +64,16 @@ class CameraImpl(object):
     def camera_info(self):
         return self._camera_info
 
-    def _cv_mat_to_image(self, mat):
+    def _image_to_compressed_image(self, img_in, quality = 100):
 
-        is_mono = False
-        if (len(mat.shape) == 2 or mat.shape[2] == 1):
-            is_mono = True
-
-        image_info = self._image_info_type()
-        image_info.width =mat.shape[1]
-        image_info.height = mat.shape[0]
-        if is_mono:
-            image_info.step = mat.shape[1]
-            image_info.encoding = self._image_consts["ImageEncoding"]["mono8"]
+        if img_in.image_info.encoding == self._image_consts["ImageEncoding"]["bgr888"]:
+            mat = img_in.data.reshape([img_in.image_info.height,img_in.image_info.width,3])
+        elif img_in.image_info.encoding == self._image_consts["ImageEncoding"]["mono8"]:
+            mat = img_in.data.reshape([img_in.image_info.height,img_in.image_info.width])
         else:
-            image_info.step = mat.shape[1]*3
-            image_info.encoding = self._image_consts["ImageEncoding"]["rgb8"]
-        image_info.data_header = self._sensor_data_util.FillSensorDataHeader(self._camera_info.device_info,self._seqno)
+            assert False, "Unsupported image encoding"
+
         
-
-        image = self._image_type()
-        image.image_info = image_info
-        image.data=mat.reshape(mat.size, order='C')
-        return image
-
-    def _cv_mat_to_compressed_image(self, mat, quality = 100):
-
-        is_mono = False
-        if (len(mat.shape) == 2 or mat.shape[2] == 1):
-            is_mono = True
-
         image_info = self._image_info_type()
         image_info.width =mat.shape[1]
         image_info.height = mat.shape[0]
@@ -107,37 +95,53 @@ class CameraImpl(object):
 
     def capture_frame(self):
         with self._capture_lock:
-            img = self._capture.capture_image()
+            img = self._current_image
+        if img is None:
+            raise RR.InvalidOperationException("Camera not connected")
         return img
 
     def capture_frame_compressed(self):
         with self._capture_lock:
-            img = self._capture.capture_image()
-            mat = self.ImageToMat(img)
-        return self._cv_mat_to_compressed_image(mat)
+            img = self._current_image
+        if img is None:
+            raise RR.InvalidOperationException("Camera not connected") 
+        return self._image_to_compressed_image(img)
 
     def trigger(self):
         raise RR.NotImplementedException("Not available on this device")
 
-    def frame_threadfunc(self):
-        while(self._streaming):
-            with self._capture_lock:
-                img = self._capture.capture_image()
-               
-                self._seqno+=1
+    def _new_packets(self, pipe_sub):
+        
+        with self._capture_lock:
+            img = None
+            while pipe_sub.Available > 0:
+                img = pipe_sub.ReceivePacket()
+            if img is None:
+                return
+            self._current_image = img
+
+            if self._sending_frame:
+                return
             
+            self._seqno+=1
+
+            if not self._streaming:
+                return
+            self._sending_frame = True
+        
+        try:        
             self.frame_stream.AsyncSendPacket(img,lambda: None)
-            #self.frame_stream_compressed.AsyncSendPacket(self._cv_mat_to_compressed_image(mat),lambda: None)
-            #self.preview_stream.AsyncSendPacket(self._cv_mat_to_compressed_image(mat,70),lambda: None)
+            self.frame_stream_compressed.AsyncSendPacket(self._image_to_compressed_image(img),lambda: None)
+            self.preview_stream.AsyncSendPacket(self._image_to_compressed_image(img,70),lambda: None)
             device_now = self._date_time_util.FillDeviceTime(self._camera_info.device_info,self._seqno)
             self.device_clock_now.OutValue = device_now
+        finally:            
+            self._sending_frame = False
 
     def start_streaming(self):
         if (self._streaming):
             raise RR.InvalidOperationException("Already streaming")
-        self._streaming=True
-        t=threading.Thread(target=self.frame_threadfunc)
-        t.start()
+        self._streaming=True       
 
     def stop_streaming(self):
         if (not self._streaming):
@@ -189,10 +193,7 @@ def main():
             camera_attributes = attributes_util.GetDefaultServiceAttributesFromDeviceInfo(camera_info.device_info)
 
             camera = CameraImpl(args.camera_sim_path,camera_info)
-            for _ in range(10):
-                camera.capture_frame()
-        
-        
+                    
 
             service_ctx = RRN.RegisterService("camera","com.robotraconteur.imaging.Camera",camera)
             service_ctx.SetServiceAttributes(camera_attributes)

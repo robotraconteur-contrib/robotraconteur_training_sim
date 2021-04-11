@@ -9,10 +9,10 @@ import numpy as np
 
 
 #Function to take the data structure returned from the camera service
-#and convert it to an OpenCV array
-def ImageToMat(image):
+#with a compressed image and convert it to an OpenCV array
+def CompressedImageToMat(compressed_image):
 
-	frame2=image.data.reshape([image.image_info.height, image.image_info.width, int(len(image.data)/(image.image_info.height*image.image_info.width))], order='C')
+	frame2 = cv2.imdecode(compressed_image.data,1)
 	
 	return frame2
 
@@ -20,9 +20,9 @@ image_consts=None
 
 def main():
 	#Accept the names of the webcams and the nodename from command line
-	#parser = argparse.ArgumentParser(description="RR plug and play client")
-	
-	#args, _ = parser.parse_known_args()
+	# parser = argparse.ArgumentParser(description="RR plug and play client")
+	# parser.add_argument("--type",type=str,default='rgb',help="type of image")
+	# args, _ = parser.parse_known_args()
 
 	url='rr+tcp://localhost:59823?service=camera'
 
@@ -33,9 +33,9 @@ def main():
 	image_consts = RRN.GetConstants('com.robotraconteur.image', cam)
 
 	# Capture the frame from the camera, returns in raw format
-	raw_frame = cam.capture_frame()
+	raw_frame = cam.capture_frame_compressed()
 	#Convert raw_img to opencv format
-	current_frame=ImageToMat(raw_frame)
+	current_frame=CompressedImageToMat(raw_frame)
 
 	cv2.namedWindow("Image")
 
