@@ -34,8 +34,8 @@ def new_frame(pipe_ep):
 			#Receive the packet
 			
 			compressed_image=pipe_ep.ReceivePacket()
-		#Convert the packet to an image and set the global variable
-		current_compressed_frame=compressed_image
+			
+			current_compressed_frame=compressed_image
 
 	return
 
