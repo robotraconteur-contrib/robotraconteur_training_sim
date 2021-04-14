@@ -44,7 +44,7 @@
       </visual>
       <sensor name="camera" type="camera">
         
-        <pose>0. 0 0 0 1.57 3.14159</pose>          
+        <pose>0. 0 0 0 1.570796326 3.141592653</pose>          
         <camera>            
           
           <image>
@@ -52,7 +52,15 @@
             <height>720</height>
             <format>B8G8R8</format>
           </image>
-          <horizontal_fov>2.00787</horizontal_fov>
+          <!--<horizontal_fov>1.047</horizontal_fov>-->
+          <lens>
+            <intrinsics>
+              <fx>616.23</fx>
+              <fy>617.23</fy>
+              <cx>641.29</cx>
+              <cy>359.53</cy>
+            </intrinsics>
+          </lens>
           <clip>
             <near>0.1</near>
             <far>100</far>

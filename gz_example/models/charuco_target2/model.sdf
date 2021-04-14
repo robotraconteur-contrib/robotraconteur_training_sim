@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="charuco_target">
+    <static>true</static>
+    <link name="base_link">
+      <visual name="marker">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://charuco_target/meshes/charuco_target2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

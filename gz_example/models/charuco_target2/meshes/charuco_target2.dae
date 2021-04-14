@@ -5,22 +5,22 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.92.0 commit date:2021-02-24, commit time:16:25, hash:02948a2cab44</authoring_tool>
     </contributor>
-    <created>2021-04-11T22:04:28</created>
-    <modified>2021-04-11T22:04:28</modified>
+    <created>2021-04-12T00:37:39</created>
+    <modified>2021-04-12T00:37:39</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
-    <effect id="charuco_calibration_target-effect">
+    <effect id="charuco_calibration_target2-effect">
       <profile_COMMON>
-        <newparam sid="charuco_calibration_target_png-surface">
+        <newparam sid="charuco_calibration_target2_png-surface">
           <surface type="2D">
-            <init_from>charuco_calibration_target_png</init_from>
+            <init_from>charuco_calibration_target2_png</init_from>
           </surface>
         </newparam>
-        <newparam sid="charuco_calibration_target_png-sampler">
+        <newparam sid="charuco_calibration_target2_png-sampler">
           <sampler2D>
-            <source>charuco_calibration_target_png-surface</source>
+            <source>charuco_calibration_target2_png-surface</source>
           </sampler2D>
         </newparam>
         <technique sid="common">
@@ -29,7 +29,7 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <texture texture="charuco_calibration_target_png-sampler" texcoord="UVMap"/>
+              <texture texture="charuco_calibration_target2_png-sampler" texcoord="UVMap"/>
             </diffuse>
             <index_of_refraction>
               <float sid="ior">1.45</float>
@@ -57,57 +57,57 @@
     </effect>
   </library_effects>
   <library_images>
-    <image id="charuco_calibration_target_png" name="charuco_calibration_target_png">
-      <init_from>charuco_calibration_target.png</init_from>
+    <image id="charuco_calibration_target2_png" name="charuco_calibration_target2_png">
+      <init_from>charuco_calibration_target2.png</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="charuco_calibration_target-material" name="charuco_calibration_target">
-      <instance_effect url="#charuco_calibration_target-effect"/>
+    <material id="charuco_calibration_target2-material" name="charuco_calibration_target2">
+      <instance_effect url="#charuco_calibration_target2-effect"/>
     </material>
     <material id="Material-material" name="Material">
       <instance_effect url="#Material-effect"/>
     </material>
   </library_materials>
   <library_geometries>
-    <geometry id="charuco_calibration_target-mesh" name="charuco_calibration_target">
+    <geometry id="charuco_calibration_target2-mesh" name="charuco_calibration_target2">
       <mesh>
-        <source id="charuco_calibration_target-mesh-positions">
-          <float_array id="charuco_calibration_target-mesh-positions-array" count="12">-0.6470473 -0.5 0 0.6470473 -0.5 0 -0.6470473 0.5 0 0.6470473 0.5 0</float_array>
+        <source id="charuco_calibration_target2-mesh-positions">
+          <float_array id="charuco_calibration_target2-mesh-positions-array" count="12">-0.6470473 -0.5 0 0.6470473 -0.5 0 -0.6470473 0.5 0 0.6470473 0.5 0</float_array>
           <technique_common>
-            <accessor source="#charuco_calibration_target-mesh-positions-array" count="4" stride="3">
+            <accessor source="#charuco_calibration_target2-mesh-positions-array" count="4" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="charuco_calibration_target-mesh-normals">
-          <float_array id="charuco_calibration_target-mesh-normals-array" count="3">0 0 1</float_array>
+        <source id="charuco_calibration_target2-mesh-normals">
+          <float_array id="charuco_calibration_target2-mesh-normals-array" count="3">0 0 1</float_array>
           <technique_common>
-            <accessor source="#charuco_calibration_target-mesh-normals-array" count="1" stride="3">
+            <accessor source="#charuco_calibration_target2-mesh-normals-array" count="1" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="charuco_calibration_target-mesh-map-0">
-          <float_array id="charuco_calibration_target-mesh-map-0-array" count="12">1 0 0 1 0 0 1 0 1 1 0 1</float_array>
+        <source id="charuco_calibration_target2-mesh-map-0">
+          <float_array id="charuco_calibration_target2-mesh-map-0-array" count="12">1 0 0 1 0 0 1 0 1 1 0 1</float_array>
           <technique_common>
-            <accessor source="#charuco_calibration_target-mesh-map-0-array" count="6" stride="2">
+            <accessor source="#charuco_calibration_target2-mesh-map-0-array" count="6" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="charuco_calibration_target-mesh-vertices">
-          <input semantic="POSITION" source="#charuco_calibration_target-mesh-positions"/>
+        <vertices id="charuco_calibration_target2-mesh-vertices">
+          <input semantic="POSITION" source="#charuco_calibration_target2-mesh-positions"/>
         </vertices>
-        <triangles material="charuco_calibration_target-material" count="2">
-          <input semantic="VERTEX" source="#charuco_calibration_target-mesh-vertices" offset="0"/>
-          <input semantic="NORMAL" source="#charuco_calibration_target-mesh-normals" offset="1"/>
-          <input semantic="TEXCOORD" source="#charuco_calibration_target-mesh-map-0" offset="2" set="0"/>
+        <triangles material="charuco_calibration_target2-material" count="2">
+          <input semantic="VERTEX" source="#charuco_calibration_target2-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#charuco_calibration_target2-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#charuco_calibration_target2-mesh-map-0" offset="2" set="0"/>
           <p>1 0 0 2 0 1 0 0 2 1 0 3 3 0 4 2 0 5</p>
         </triangles>
       </mesh>
@@ -157,12 +157,12 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="charuco_calibration_target" name="charuco_calibration_target" type="NODE">
-        <matrix sid="transform">0.2159038 0 0 0.127 0 0.2158 0 0.08889 0 0 1 0 0 0 0 1</matrix>
-        <instance_geometry url="#charuco_calibration_target-mesh" name="charuco_calibration_target">
+      <node id="charuco_calibration_target2" name="charuco_calibration_target2" type="NODE">
+        <matrix sid="transform">0.2159038 0 0 0.1111 0 0.2158 0 0.08889 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#charuco_calibration_target2-mesh" name="charuco_calibration_target2">
           <bind_material>
             <technique_common>
-              <instance_material symbol="charuco_calibration_target-material" target="#charuco_calibration_target-material">
+              <instance_material symbol="charuco_calibration_target2-material" target="#charuco_calibration_target2-material">
                 <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>
@@ -170,7 +170,7 @@
         </instance_geometry>
       </node>
       <node id="Cube" name="Cube" type="NODE">
-        <matrix sid="transform">0.1395 0 0 0.127 0 0.108 0 0.0889 0 0 0.001 -0.002 0 0 0 1</matrix>
+        <matrix sid="transform">0.1395 0 0 0.1111 0 0.108 0 0.08889 0 0 0.001 -0.002 0 0 0 1</matrix>
         <instance_geometry url="#Cube-mesh" name="Cube">
           <bind_material>
             <technique_common>

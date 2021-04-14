@@ -7,7 +7,7 @@
         <xacro:property name="size" value="0.03"/>  
         
         <!-- Chessboard size, have to be even numbers -->
-        <xacro:property name="r" value="9"/>  
+        <xacro:property name="r" value="8"/>  
         <xacro:property name="c" value="7"/> 
         
         <static>true</static>

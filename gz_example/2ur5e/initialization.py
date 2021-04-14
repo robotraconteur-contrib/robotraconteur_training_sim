@@ -96,6 +96,17 @@ H[2][-1]=1.025
 H[0:3,0:3] = rot([1,0,0],np.pi)
 initialize(model_sdf,model_name,H)
 
+#Load Charuco target
+# model_name="charuco_target"
+# f = open(model_dir.joinpath(model_name+'/model.sdf'),'r')
+# model_sdf = f.read()
+
+# H=np.eye(4)
+# H[0][-1]=0.1055
+# H[1][-1]=-0.7025
+# H[2][-1]=1.025
+# #H[0:3,0:3] = rot([1,0,0],np.pi)
+# initialize(model_sdf,model_name,H)
 
 
 print("Done!")
