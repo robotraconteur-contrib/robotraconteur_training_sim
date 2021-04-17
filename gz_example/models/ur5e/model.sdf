@@ -581,6 +581,24 @@
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
       </visual>
+      <!-- Aruco tag DICT_6X6_250 id: 120 xyz=0,0.04,0 rpy=-1.570796,0,0 -->
+      <visual name="aruco120">
+        <pose>0 0.04 0 -1.570796 0 0</pose>
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>0.07 0.07</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://ur5e/materials/scripts</uri>
+            <uri>model://ur5e/materials/textures/</uri>
+            <name>aruco120/Image</name>
+          </script>
+        </material>
+      </visual>
       <!-- <collision name='wrist_3_link_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
