@@ -35,20 +35,19 @@
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
-      <visual name="aruco200">
-        <pose>0 0 0.0252 0 0 0</pose>
+      <visual name="aruco201">
+        <pose>0 0 0.0252 0 0 1.5708</pose>
         <cast_shadows>false</cast_shadows>
         <geometry>
-          <plane>
-            <normal>0 0 1</normal>
-            <size>0.05 0.05</size>
-          </plane>
+          <box>
+            <size>0.05 0.05 0.000001</size>
+          </box>
         </geometry>
         <material>
           <script>
-            <uri>model://cube200/materials/scripts</uri>
-            <uri>model://cube200/materials/textures/</uri>
-            <name>aruco200/Image</name>
+            <uri>model://cube201/materials/scripts</uri>
+            <uri>model://cube201/materials/textures/</uri>
+            <name>aruco201/Image</name>
           </script>
         </material>
       </visual>
