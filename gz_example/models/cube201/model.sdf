@@ -1,0 +1,57 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+  <model name="my_model">
+    <pose>0 0 0.5 0 0 0</pose>
+    <static>false</static>
+    <link name="link">
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>          
+          <ixx>0.083</ixx>       
+          <ixy>0.0</ixy>         
+          <ixz>0.0</ixz>         
+          <iyy>0.083</iyy>       
+          <iyz>0.0</iyz>         
+          <izz>0.083</izz>       
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0 0 0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+      <visual name="aruco201">
+        <pose>0 0 0.0252 0 0 0</pose>
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>0.05 0.05</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://cube201/materials/scripts</uri>
+            <uri>model://cube201/materials/textures/</uri>
+            <name>aruco201/Image</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

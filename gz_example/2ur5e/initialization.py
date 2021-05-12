@@ -13,6 +13,8 @@ print(str(Path(os.path.realpath(__file__)).parent.parent.joinpath("toolbox")))
 sys.path.append(str(Path(os.path.realpath(__file__)).parent.parent.joinpath("toolbox")))
 from general_robotics_toolbox import R2q,rot	#convert R to quaternion
 
+from ur5e1_ik import inv
+
 model_dir = Path(os.path.realpath(__file__)).parent.parent.joinpath("models")
 
 server=RRN.ConnectService('rr+tcp://localhost:11346/?service=GazeboServer')
@@ -34,6 +36,20 @@ def initialize(robot_sdf,model_name,H):
 	model_pose["position"]['z']=d[2]
 	w.insert_model(robot_sdf, model_name, model_pose)
 
+def initialize_robot_controller(m):
+	try:
+		m.destroy_kinematic_joint_controller()
+		m.create_kinematic_joint_controller()
+		m_controller = m.get_kinematic_joint_controller()	
+		j_pos = [0.0,-np.pi/2,0.0,0.0,0.0,0.0]
+		j_names = ["shoulder_pan_joint", "shoulder_lift_joint", "elbow_joint", "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
+		for j in j_names:
+			m_controller.add_joint(j)
+		j_command = {j_names[i]: j_pos[i] for i in range(6)}
+		m_controller.joint_position_command.PokeOutValue(j_command)
+	except:
+		pass
+
 #model name: ur, sawyer, abb,staubli
 #read sdf file
 model_name="ur5e1"
@@ -42,6 +58,11 @@ robot_sdf = f.read()
 with open('calibration/ur5e1.yaml') as file:
 	H = np.array(yaml.load(file)['H'],dtype=np.float64)
 initialize(robot_sdf,model_name,H)
+initialize_robot_controller(w.get_models(model_name))
+
+#ur5e1_model = w.get_models("ur5e1")
+#kin_controller = 
+
 #read sdf file
 model_name="ur5e2"
 f = open(model_dir.joinpath('ur5e/model.sdf'),'r')
@@ -50,6 +71,7 @@ with open('calibration/ur5e2.yaml') as file:
 	H = np.array(yaml.load(file)['H'],dtype=np.float64)
 initialize(robot_sdf,model_name,H)
 
+initialize_robot_controller(w.get_models(model_name))
 
 
 box1=[-0.6, 0.6]
@@ -60,12 +82,26 @@ f = open(model_dir.joinpath(model_name+'/model.sdf'),'r')
 model_sdf = f.read()
 H=np.eye(4)
 H[2][-1]=1.2
-for i in range(4):
+for i in range(2):
 	H[0][-1]=box1[0]-0.05
 	H[1][-1]=box1[1]-0.15+0.1*i
 	initialize(model_sdf,model_name+str(2*i),H)
 	H[0][-1]=box1[0]+0.05
 	H[1][-1]=box1[1]-0.15+0.1*i
+	initialize(model_sdf,model_name+str(2*i+1),H)
+
+#read sdf file
+model_name="cube200"
+f = open(model_dir.joinpath(model_name+'/model.sdf'),'r')
+model_sdf = f.read()
+H=np.eye(4)
+H[2][-1]=1.2
+for i in range(2):
+	H[0][-1]=box1[0]-0.05
+	H[1][-1]=box1[1]-0.15+0.1*(i+2)
+	initialize(model_sdf,model_name+str(2*i),H)
+	H[0][-1]=box1[0]+0.05
+	H[1][-1]=box1[1]-0.15+0.1*(i+2)
 	initialize(model_sdf,model_name+str(2*i+1),H)
 
 
@@ -75,12 +111,26 @@ f = open(model_dir.joinpath(model_name+'/model.sdf'),'r')
 model_sdf = f.read()
 H=np.eye(4)
 H[2][-1]=1.1
-for i in range(4):
+for i in range(2):
 	H[0][-1]=box2[0]-0.05
 	H[1][-1]=box2[1]-0.15+0.1*i
 	initialize(model_sdf,model_name+str(2*i),H)
 	H[0][-1]=box2[0]+0.05
 	H[1][-1]=box2[1]-0.15+0.1*i
+	initialize(model_sdf,model_name+str(2*i+1),H)
+
+#read sdf file
+model_name="cube201"
+f = open(model_dir.joinpath(model_name+'/model.sdf'),'r')
+model_sdf = f.read()
+H=np.eye(4)
+H[2][-1]=1.1
+for i in range(2):
+	H[0][-1]=box2[0]-0.05
+	H[1][-1]=box2[1]-0.15+0.1*(i+2)
+	initialize(model_sdf,model_name+str(2*i),H)
+	H[0][-1]=box2[0]+0.05
+	H[1][-1]=box2[1]-0.15+0.1*(i+2)
 	initialize(model_sdf,model_name+str(2*i+1),H)
 
 
