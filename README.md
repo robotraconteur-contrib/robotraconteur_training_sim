@@ -90,3 +90,32 @@ Linux:
 
 *Camera streaming* `camera_client_image.py` - An example camera client that streams a preview of the overhead camera.
 
+## Driver URLs
+
+The following are the Robot Racontuer connection URLs for the virtual device drivers:
+
+UR Robot 1: `rr+tcp://localhost:52511?service=robot`
+
+UR Robot 2: `rr+tcp://localhost:52512?service=robot`
+
+Tool 1: `rr+tcp://localhost:52521?service=gripper`
+
+Tool 2: `rr+tcp://localhost:52522?service=gripper`
+
+Camera: `rr+tcp://localhost:59823?service=camera`
+
+## Troubleshooting
+
+*Gazebo won't start*
+
+Sometimes `gzserver` fails to quit properly. On Linux, run `killall gzserver`. On Windows, use the Task Manager -> Details tab to kill `gzserver`.
+
+*Gazebo or Drivers fail to start again after closing all windows*
+
+Linux sockets have a behavior called `TIME_WAIT`, which means the socket will remain open for a few minutes after the program has exited. This can be checked using the command `netstat -an | grep TIME_WAIT`. Try waiting a few minutes before restarting the simulation, or reboot the computer.
+
+*Connection Refused when trying to connect using a script*
+
+Check to make sure the drivers have all opened properly. There should be a terminal for Gazebo and 5 drivers. Check the URL of the driver. Real device drivers and the simulation typically use different ports and hostnames. The real UR robot driver defaults to `rr+tcp://localhost:58652?service=robot`, an the real camera driver defaults to `rr+tcp://localhost/?service=camera`.
+
+The Robot Raconteur Service Browser https://github.com/robotraconteur/RobotRaconteur_ServiceBrowser can also be used to view the services running on the network. If discovery is not working on Windows, try disabling the firewall.
