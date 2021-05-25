@@ -729,7 +729,8 @@
       </link>
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>
-      <pose>-0.8249 -0.230516 0.06 1.60487 -0 3.1415926</pose>
+      <!--<pose>-0.8249 -0.230516 0.06 1.60487 -0 3.1415926</pose>-->
+      <pose>-0.817201 -0.232897 0.062799 1.60487 -0 3.1415926</pose>
     </model>
     <joint name='elbow_joint' type='revolute'>
       <parent>upper_arm_link</parent>
