@@ -1,8 +1,10 @@
+#!/bin/bash
+
 realpath() {
     [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
-SCRIPT=`realpath -s $0`
+SCRIPT=`realpath $0`
 BASEDIR=`dirname $SCRIPT`
 
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$BASEDIR/../models
