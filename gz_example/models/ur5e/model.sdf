@@ -110,7 +110,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://ur5e/meshes/visual/forearm.stl</uri>
+            <uri>model://ur5e/meshes/visual/forearm.dae</uri>
           </mesh>
         </geometry>
         <transparency>0</transparency>
@@ -314,7 +314,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://ur5e/meshes/visual/upperarm.stl</uri>
+            <uri>model://ur5e/meshes/visual/upperarm.dae</uri>
           </mesh>
         </geometry>
         <transparency>0</transparency>
@@ -401,7 +401,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://ur5e/meshes/visual/wrist1.stl</uri>
+            <uri>model://ur5e/meshes/visual/wrist1.dae</uri>
           </mesh>
         </geometry>
         <transparency>0</transparency>
