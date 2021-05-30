@@ -18,7 +18,11 @@
     <child link="ur5e2__link_0"/>
     <origin rpy="0.0 0.0 0.0" xyz="0 0.0 0.0"/><!--abb pedestal-->
   </joint>
-
+  <joint name="table_pose" type="fixed">
+    <parent link="world"/>
+    <child link="table__link"/>
+    <origin rpy="0 0 1.57" xyz="0 0.0 0.0"/><!--abb pedestal-->
+  </joint>
 
 
 <!-- robot urdf start here -->
@@ -416,4 +420,75 @@
       </geometry>
     </visual>
   </link>
+
+  <!-- table part -->
+  <link name="table__link">
+    <inertial>
+      <mass value="0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="table__front_right_leg">
+      <origin xyz="0.68 -0.38  0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="1"/>
+      </geometry>
+    </collision>
+    <collision name="table__surface">
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.5 0.8 0.03"/>
+      </geometry>
+    </collision>
+    <collision name="table__front_left_leg">
+      <origin xyz="0.68 0.38 0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="1"/>
+      </geometry>
+    </collision>
+    <collision name="table__back_right_leg">
+      <origin xyz="-0.68 -0.38  0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="1"/>
+      </geometry>
+    </collision>
+    <collision name="table__back_left_leg">
+      <origin xyz="-0.68  0.38  0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="1"/>
+      </geometry>
+    </collision>
+    <visual name="table__visual1">
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.5 0.8 0.03"/>
+      </geometry>
+    </visual>
+    <visual name="table__front_left_leg">
+      <origin xyz="0.68 0.38 0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="1"/>
+      </geometry>
+    </visual>
+    <visual name="table__front_right_leg">
+      <origin xyz="0.68 -0.38  0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="1"/>
+      </geometry>
+    </visual>
+    <visual name="table__back_right_leg">
+      <origin xyz="-0.68 -0.38  0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="1"/>
+      </geometry>
+    </visual>
+    <visual name="table__back_left_leg">
+      <origin xyz="-0.68  0.38  0.5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="1"/>
+      </geometry>
+    </visual>
+  </link>
+
+
 </robot>
