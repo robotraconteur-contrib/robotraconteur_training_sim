@@ -9,7 +9,7 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 start cmd /c gazebo --verbose tsp_world.world -s gazebo_robotraconteur_server_plugin.dll --robotraconteur-server-tcp-port=11346
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-timeout /t 5
+timeout /t 10
 cd %~dp0
 if %errorlevel% neq 0 exit /b %errorlevel%
 python initialization.py

@@ -7,7 +7,7 @@ cd $BASEDIR
 
 gnome-terminal -- $CONDA_PREFIX/bin/gazebo --verbose tsp_world.world -s libgazebo_robotraconteur_server_plugin.so --robotraconteur-server-tcp-port=11346
 
-sleep 5s
+sleep 10s
 python initialization.py
 
 cd $BASEDIR/../robot_config
