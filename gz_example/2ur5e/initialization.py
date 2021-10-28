@@ -56,7 +56,7 @@ model_name="ur5e1"
 f = open(model_dir.joinpath('ur5e/model.sdf'),'r')
 robot_sdf = f.read()
 with open('calibration/ur5e1.yaml') as file:
-	H = np.array(yaml.load(file)['H'],dtype=np.float64)
+	H = np.array(yaml.load(file, Loader=yaml.FullLoader)['H'],dtype=np.float64)
 initialize(robot_sdf,model_name,H)
 initialize_robot_controller(w.get_models(model_name))
 
@@ -68,7 +68,7 @@ model_name="ur5e2"
 f = open(model_dir.joinpath('ur5e/model.sdf'),'r')
 robot_sdf = f.read()
 with open('calibration/ur5e2.yaml') as file:
-	H = np.array(yaml.load(file)['H'],dtype=np.float64)
+	H = np.array(yaml.load(file, Loader=yaml.FullLoader)['H'],dtype=np.float64)
 initialize(robot_sdf,model_name,H)
 
 initialize_robot_controller(w.get_models(model_name))

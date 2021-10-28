@@ -92,7 +92,7 @@ robot_def=Robot(H,np.transpose(P),np.zeros(num_joints))
 slot_dict={'t_f':1,'p_f':0,'s_f':2,'b_f':3}	
 
 with open('calibration/'+robot_name+'.yaml') as file:
-	H_robot = np.array(yaml.load(file)['H'],dtype=np.float64)
+	H_robot = np.array(yaml.load(file, Loader=yaml.FullLoader)['H'],dtype=np.float64)
 	H_robot=H42H3(H_robot)
 
 #jog robot joint helper function
