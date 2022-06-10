@@ -6,11 +6,21 @@
 
 ![simulator window](https://github.com/robotraconteur-contrib/robotraconteur_training_sim/blob/master/training_sim_window.PNG?raw=true)
 
-The Robot Raconteur Training Simulator is a Gazebo based simulator that contains several Robot Raconteur devices:
+![simulator window create](training_sim_create.png?raw=true)
+
+The Robot Raconteur Training Simulator is a Gazebo based simulator that contains two scenes:
+
+**Universal Robot UR5e Scene**
 
 * Two Universal Robots UR5e Robots
 * Two simulated vacuum grippers
 * An overhead simulated camera
+
+**iRobot Create Scene**
+
+* iRobot Create
+* Stereo camera mast on robot
+* "Cafe" scene from Gazebo model library
 
 ## Installation
 
@@ -22,7 +32,7 @@ Open the Miniconda3 prompt by clicking Start (Windows icon on left of taskbar) -
 
 In the terminal, run the following to install the simulator:
 
-    conda create -c conda-forge -c robotraconteur -n rr_training_sim robotraconteur_training_sim
+    mamba create -c conda-forge -c robotraconteur -n rr_training_sim robotraconteur_training_sim
 
 ### Linux
 
@@ -35,9 +45,12 @@ The Linux installer will configure your system to start conda by default in new 
 In a new terminal, run the following to install the simulator:
 
     source ~/miniconda3/bin/activate
-    conda create -c conda-forge -c robotraconteur -n rr_training_sim robotraconteur_training_sim
+    mamba create -c conda-forge -c robotraconteur -n rr_training_sim robotraconteur_training_sim
 
-## Running the Simulation
+## Running the iRobot Create Simulation
+
+The iRobot Create scene only contains the simulation. The simulated drivers are contained in the Python Examples
+repository. See https://github.com/robotraconteur/RobotRaconteur_Python_Examples
 
 ### Windows
 
@@ -46,7 +59,28 @@ To run the simulation, open the Anaconda prompt by clicking Start (Windows icon 
 Run the following command:
 
     conda activate rr_training_sim
-    run_2ur5e_sim
+    cd %CONDA_PREFIX%\gz_example\create
+    run_sim
+
+### Linux
+
+Open a new prompt and run the following commands to run the simulation:
+
+    source ~/miniconda3/bin/activate
+    conda activate rr_training_sim
+    cd $CONDA_PREFIX/gz_example/create
+    run_sim
+
+## Running the UR5e Simulation
+
+### Windows
+
+To run the simulation, open the Anaconda prompt by clicking Start (Windows icon on left of taskbar) -> Anaconda3 (64-bit) -> Anaconda Prompt (miniconda3)
+
+Run the following command:
+
+    conda activate rr_training_sim
+    run_2ur5e_sim   
 
 ### Linux
 
@@ -56,7 +90,7 @@ Open a new prompt and run the following commands to run the simulation:
     conda activate rr_training_sim
     run_2ur5e_sim
 
-## Example Scripts
+### UR5e Example Scripts
 
 The simulator comes with several Robot Raconteur driver client example scripts. In a terminal with the `rr_training_sim` conda environment active, such as the one used to start the simulator, run the following to cd to the directory containing the scripts:
 
