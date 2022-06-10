@@ -39,9 +39,9 @@ viewer.start_serve_background()
 
 
 with open('../calibration/ur5e1.yaml') as file:
-	H_ur5e1 		= np.array(yaml.load(file)['H'],dtype=np.float64)
+	H_ur5e1 		= np.array(yaml.safe_load(file)['H'],dtype=np.float64)
 with open('../calibration/ur5e2.yaml') as file:
-	H_ur5e2		= np.array(yaml.load(file)['H'],dtype=np.float64)
+	H_ur5e2		= np.array(yaml.safe_load(file)['H'],dtype=np.float64)
 
 
 #update robot poses based on calibration file

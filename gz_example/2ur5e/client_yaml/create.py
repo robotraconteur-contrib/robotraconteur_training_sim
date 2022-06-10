@@ -16,5 +16,5 @@ with open(r'client_staubli.yaml', 'w') as file:
 
 
 with open(r'client_ur.yaml') as file:
-    documents = yaml.load(file, Loader=yaml.FullLoader)
+    documents = yaml.safe_load(file, Loader=yaml.FullLoader)
     print(documents)

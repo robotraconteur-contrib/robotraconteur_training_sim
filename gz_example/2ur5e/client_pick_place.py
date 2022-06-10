@@ -37,7 +37,7 @@ from general_robotics_toolbox import Robot
 
 #########read in yaml file for robot client
 with open(r'client_yaml/client_'+robot_name+'.yaml') as file:
-	robot_yaml = yaml.load(file, Loader=yaml.FullLoader)
+	robot_yaml = yaml.safe_load(file, Loader=yaml.FullLoader)
 url=robot_yaml['url']
 tool_url=robot_yaml['tool_url']
 home=robot_yaml['home']
@@ -92,7 +92,7 @@ robot_def=Robot(H,np.transpose(P),np.zeros(num_joints))
 slot_dict={'t_f':1,'p_f':0,'s_f':2,'b_f':3}	
 
 with open('calibration/'+robot_name+'.yaml') as file:
-	H_robot = np.array(yaml.load(file)['H'],dtype=np.float64)
+	H_robot = np.array(yaml.safe_load(file)['H'],dtype=np.float64)
 	H_robot=H42H3(H_robot)
 
 #jog robot joint helper function
