@@ -5,29 +5,4 @@ export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$BASEDIR/../models
 
 cd $BASEDIR
 
-gnome-terminal -- $CONDA_PREFIX/bin/gazebo --verbose tsp_world.world -s libgazebo_robotraconteur_server_plugin.so --robotraconteur-server-tcp-port=11346
-
-sleep 10s
-python initialization.py
-
-cd $BASEDIR/../robot_config
-gnome-terminal -- gazebo_model_robotraconteur_driver --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer --robotraconteur-tcp-port=52511 --robotraconteur-nodename=ur5e1_robot --model-name=ur5e1 --robot-info-file=ur5e1_robot_default_config.yml
-gnome-terminal -- gazebo_model_robotraconteur_driver --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer --robotraconteur-tcp-port=52512 --robotraconteur-nodename=ur5e2_robot --model-name=ur5e2 --robot-info-file=ur5e2_robot_default_config.yml
-
-cd $BASEDIR/gripper
-gnome-terminal -- python gripper_service.py --robotraconteur-tcp-port=52521 --robotraconteur-nodename=ur5e1_gripper --tool-info-file=gazebo_link_attacher1_tool_info.yml --gazebo-gripper-link=ur5e1::gripper::body --gazebo-gripper-contact-sensor=ur5e1::gripper::body::contact_sensor --gazebo-payload-prefix=round_bottle,perfume,cube
-gnome-terminal -- python gripper_service.py --robotraconteur-tcp-port=52522 --robotraconteur-nodename=ur5e2_gripper --tool-info-file=gazebo_link_attacher2_tool_info.yml --gazebo-gripper-link=ur5e2::gripper::body --gazebo-gripper-contact-sensor=ur5e2::gripper::body::contact_sensor --gazebo-payload-prefix=round_bottle,perfume,cube
-
-cd $BASEDIR/camera
-gnome-terminal -- python camera_service.py --camera-info-file=camerasensor.yaml
-
-cd $BASEDIR
-sleep 3s
-python home.py
-
-
-
-
-
-
-
+python -m drekar_launch --config-j2=drekar-launch.yaml.j2

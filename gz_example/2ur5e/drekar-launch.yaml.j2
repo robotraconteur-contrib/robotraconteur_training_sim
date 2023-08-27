@@ -1,0 +1,64 @@
+name: rr_traiming_sim_2ur5e
+tasks:
+  - name: gazebo
+    program: gazebo
+    args: --verbose tsp_world.world -s gazebo_robotraconteur_server_plugin.dll --robotraconteur-server-tcp-port=11346
+    cwd: {{ configdir }}
+    environment:
+      GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }};{{ configdir }}/../models
+    quit-on-terminate: true
+  - name: init
+    program: python
+    args: initialization.py
+    cwd: {{ configdir }}
+    start-delay: 10
+  - name: robot1
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.robot --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer 
+      --robotraconteur-tcp-port=52511 --robotraconteur-nodename=ur5e1_robot --model-name=ur5e1 
+      --robot-info-file=ur5e1_robot_default_config.yml
+    cwd: {{ configdir }}/../robot_config
+    restart: true
+    restart-backoff: 5
+    start-delay: 15
+  - name: robot2
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.robot --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer 
+      --robotraconteur-tcp-port=52512 --robotraconteur-nodename=ur5e2_robot --model-name=ur5e2
+      --robot-info-file=ur5e2_robot_default_config.yml
+    cwd: {{ configdir }}/../robot_config
+    restart: true
+    restart-backoff: 5
+    start-delay: 15
+  - name: gripper1
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.gripper --robotraconteur-tcp-port=52521 --robotraconteur-nodename=ur5e1_gripper 
+      --tool-info-file=gazebo_link_attacher1_tool_info.yml --gazebo-gripper-link=ur5e1::gripper::body 
+      --gazebo-gripper-contact-sensor=ur5e1::gripper::body::contact_sensor 
+      --gazebo-payload-prefix=round_bottle,perfume,cube
+    cwd: {{ configdir }}/gripper
+    restart: true
+    restart-backoff: 5
+    start-delay: 15
+  - name: gripper2
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.gripper --robotraconteur-tcp-port=52522 --robotraconteur-nodename=ur5e2_gripper 
+      --tool-info-file=gazebo_link_attacher2_tool_info.yml --gazebo-gripper-link=ur5e2::gripper::body 
+      --gazebo-gripper-contact-sensor=ur5e2::gripper::body::contact_sensor 
+      --gazebo-payload-prefix=round_bottle,perfume,cube
+    cwd: {{ configdir }}/gripper
+    restart: true
+    restart-backoff: 5
+    start-delay: 15
+  - name: camera
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.camera --camera-info-file=camerasensor.yaml
+    cwd: {{ configdir }}/camera
+    restart: true
+    restart-backoff: 5
+    start-delay: 15
