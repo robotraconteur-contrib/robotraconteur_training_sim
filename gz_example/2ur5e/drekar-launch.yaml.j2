@@ -2,7 +2,11 @@ name: rr_traiming_sim_2ur5e
 tasks:
   - name: gazebo
     program: gazebo
+    {% if platform == "win32" %}
     args: --verbose tsp_world.world -s gazebo_robotraconteur_server_plugin.dll --robotraconteur-server-tcp-port=11346
+    {% else %}
+    args: --verbose tsp_world.world -s libgazebo_robotraconteur_server_plugin.so --robotraconteur-server-tcp-port=11346
+    {% endif %}
     cwd: {{ configdir }}
     environment:
       GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }};{{ configdir }}/../models
