@@ -31,6 +31,88 @@
       <pose>0. 0. 2.2 0 0 0</pose>
     </include>
 
+    <include>
+      <uri>model://ur5e</uri>
+      <name>ur5e1</name>
+      <pose>-0.7 0.0 1 0 0 3.141592653589793</pose>
+    </include>
+
+    <include>
+      <uri>model://ur5e</uri>
+      <name>ur5e2</name>
+      <pose>0.7 0.0 1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://landmark</uri>
+      <name>landmark</name>
+      <pose>0.2 -0.55 1.025 3.141592653589793 -0.0 0.0</pose>
+    </include>
+
+    <population name="box2_1_round_bottle_population">
+      <model name="round_bottle">
+        <include>
+          <uri>model://round_bottle</uri>
+          <static>false</static>
+        </include>
+      </model>
+      <pose>-0.6 0.7 1.1 0 0 0</pose>
+      <distribution>
+        <type>grid</type>
+        <rows>2</rows>
+        <cols>2</cols>
+        <step>0.1 0.1 0</step>
+      </distribution>
+    </population>
+
+    <population name="box2_1_cube200_population">
+      <model name="cube200">
+        <include>
+          <uri>model://cube200</uri>
+          <static>false</static>
+        </include>
+      </model>
+      <pose>-0.6 0.475 1.1 0 0 0</pose>
+      <distribution>
+        <type>grid</type>
+        <rows>2</rows>
+        <cols>2</cols>
+        <step>0.1 0.1 0</step>
+      </distribution>
+    </population>
+
+    <population name="box2_2_perfume_population">
+      <model name="perfume">
+        <include>
+          <uri>model://perfume</uri>
+          <static>false</static>
+        </include>
+      </model>
+      <pose>0.6 0.7 1.1 0 0 0</pose>
+      <distribution>
+        <type>grid</type>
+        <rows>2</rows>
+        <cols>2</cols>
+        <step>0.1 0.1 0</step>
+      </distribution>
+    </population>
+
+    <population name="box2_2_cube201_population">
+      <model name="cube201">
+        <include>
+          <uri>model://cube201</uri>
+          <static>false</static>
+        </include>
+      </model>
+      <pose>0.6 0.475 1.1 0 0 0</pose>
+      <distribution>
+        <type>grid</type>
+        <rows>2</rows>
+        <cols>2</cols>
+        <step>0.1 0.1 0</step>
+      </distribution>
+    </population>
+
     <physics type="ode">
       <max_step_size>0.001000</max_step_size>
       <real_time_factor>1.000000</real_time_factor>
