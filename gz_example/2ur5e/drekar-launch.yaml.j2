@@ -11,11 +11,6 @@ tasks:
     environment:
       GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }};{{ configdir }}/../models
     quit-on-terminate: true
-  - name: init
-    program: python
-    args: initialization.py
-    cwd: {{ configdir }}
-    start-delay: 10
   - name: robot1
     program: python
     args: >-
@@ -25,7 +20,7 @@ tasks:
     cwd: {{ configdir }}/../robot_config
     restart: true
     restart-backoff: 5
-    start-delay: 15
+    start-delay: 5
   - name: robot2
     program: python
     args: >-
@@ -35,7 +30,7 @@ tasks:
     cwd: {{ configdir }}/../robot_config
     restart: true
     restart-backoff: 5
-    start-delay: 15
+    start-delay: 5
   - name: gripper1
     program: python
     args: >-
@@ -46,7 +41,7 @@ tasks:
     cwd: {{ configdir }}/gripper
     restart: true
     restart-backoff: 5
-    start-delay: 15
+    start-delay: 5
   - name: gripper2
     program: python
     args: >-
@@ -57,7 +52,7 @@ tasks:
     cwd: {{ configdir }}/gripper
     restart: true
     restart-backoff: 5
-    start-delay: 15
+    start-delay: 5
   - name: camera
     program: python
     args: >-
