@@ -964,5 +964,29 @@
     </joint>
     <static>0</static>
     <allow_auto_disable>1</allow_auto_disable>
+
+    <gazebo_robotraconteur_server_plugin_model>
+      
+      <kinematic_joint_controller>
+        <joint name="shoulder_pan_joint">
+          <initial_position>-0.37542361</initial_position>
+        </joint>
+        <joint name="shoulder_lift_joint">
+          <initial_position>-1.85693303</initial_position>
+        </joint>
+        <joint name="elbow_joint">
+          <initial_position>2.49059051</initial_position>
+        </joint>
+        <joint name="wrist_1_joint">
+          <initial_position>-2.20445381</initial_position>
+        </joint>
+        <joint name="wrist_2_joint">
+          <initial_position>-1.57079633</initial_position>
+        </joint>
+        <joint name="wrist_3_joint">
+          <initial_position>1.19537272</initial_position>
+        </joint>
+      </kinematic_joint_controller>      
+    </gazebo_robotraconteur_server_plugin_model>
   </model>
 </sdf>

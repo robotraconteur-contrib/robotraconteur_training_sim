@@ -26,10 +26,10 @@
           </box>
         </geometry>
         <material>
-          <script>
+          <!--<script>
             <name>Gazebo/Grey</name>
             <uri>file://repeated.material</uri>
-          </script>
+          </script>-->
           <shader type='vertex'>
             <normal_map>__default__</normal_map>
           </shader>
@@ -123,10 +123,10 @@
           </box>
         </geometry>
         <material>
-          <script>
+          <!--<script>
             <name>Gazebo/Grey</name>
             <uri>file://repeated.material</uri>
-          </script>
+          </script>-->
           <shader type='vertex'>
             <normal_map>__default__</normal_map>
           </shader>

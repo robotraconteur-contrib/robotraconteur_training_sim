@@ -49,69 +49,101 @@
       <pose>0.2 -0.55 1.025 3.141592653589793 -0.0 0.0</pose>
     </include>
 
-    <population name="box2_1_round_bottle_population">
-      <model name="round_bottle">
-        <include>
-          <uri>model://round_bottle</uri>
-          <static>false</static>
-        </include>
-      </model>
-      <pose>-0.6 0.7 1.1 0 0 0</pose>
-      <distribution>
-        <type>grid</type>
-        <rows>2</rows>
-        <cols>2</cols>
-        <step>0.1 0.1 0</step>
-      </distribution>
-    </population>
+    <include>
+      <uri>model://round_bottle</uri>
+      <name>round_bottle_1</name>
+      <pose>-0.55 0.65 1.1 0 0 0</pose>
+    </include>
 
-    <population name="box2_1_cube200_population">
-      <model name="cube200">
-        <include>
-          <uri>model://cube200</uri>
-          <static>false</static>
-        </include>
-      </model>
-      <pose>-0.6 0.475 1.1 0 0 0</pose>
-      <distribution>
-        <type>grid</type>
-        <rows>2</rows>
-        <cols>2</cols>
-        <step>0.1 0.1 0</step>
-      </distribution>
-    </population>
+    <include>
+      <uri>model://round_bottle</uri>
+      <name>round_bottle_2</name>
+      <pose>-0.65 0.65 1.1 0 0 0</pose>
+    </include>
 
-    <population name="box2_2_perfume_population">
-      <model name="perfume">
-        <include>
-          <uri>model://perfume</uri>
-          <static>false</static>
-        </include>
-      </model>
-      <pose>0.6 0.7 1.1 0 0 0</pose>
-      <distribution>
-        <type>grid</type>
-        <rows>2</rows>
-        <cols>2</cols>
-        <step>0.1 0.1 0</step>
-      </distribution>
-    </population>
+    <include>
+      <uri>model://round_bottle</uri>
+      <name>round_bottle_3</name>
+      <pose>-0.55 0.75 1.1 0 0 0</pose>
+    </include>
 
-    <population name="box2_2_cube201_population">
-      <model name="cube201">
-        <include>
-          <uri>model://cube201</uri>
-          <static>false</static>
-        </include>
-      </model>
-      <pose>0.6 0.475 1.1 0 0 0</pose>
-      <distribution>
-        <type>grid</type>
-        <rows>2</rows>
-        <cols>2</cols>
-        <step>0.1 0.1 0</step>
-      </distribution>
-    </population>
+    <include>
+      <uri>model://round_bottle</uri>
+      <name>round_bottle_4</name>
+      <pose>-0.65 0.75 1.1 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://cube200</uri>
+      <name>cube200_1</name>
+      <pose>-0.55 0.425 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube200</uri>
+      <name>cube200_2</name>
+      <pose>-0.65 0.425 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube200</uri>
+      <name>cube200_3</name>
+      <pose>-0.55 0.525 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube200</uri>
+      <name>cube200_4</name>
+      <pose>-0.65 0.525 1.1 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://perfume</uri>
+      <name>perfume_1</name>
+      <pose>0.55 0.65 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://perfume</uri>
+      <name>perfume_2</name>
+      <pose>0.65 0.65 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://perfume</uri>
+      <name>perfume_3</name>
+      <pose>0.55 0.75 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://perfume</uri>
+      <name>perfume_4</name>
+      <pose>0.65 0.75 1.1 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://cube201</uri>
+      <name>cube201_1</name>
+      <pose>0.55 0.425 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube201</uri>
+      <name>cube201_2</name>
+      <pose>0.65 0.425 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube201</uri>
+      <name>cube201_3</name>
+      <pose>0.55 0.525 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube201</uri>
+      <name>cube201_4</name>
+      <pose>0.65 0.525 1.1 0 0 0</pose>
+    </include>
 
     <physics type="ode">
       <max_step_size>0.001000</max_step_size>
