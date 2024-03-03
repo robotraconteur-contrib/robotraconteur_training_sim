@@ -32,7 +32,7 @@ Open the Miniconda3 prompt by clicking Start (Windows icon on left of taskbar) -
 
 In the terminal, run the following to install the simulator:
 
-    mamba create -c conda-forge -c robotraconteur -n rr_training_sim robotraconteur_training_sim
+    mamba create -c conda-forge -c robotraconteur -c wasontech -n rr_training_sim robotraconteur_training_sim
 
 ### Linux
 
@@ -45,7 +45,7 @@ The Linux installer will configure your system to start conda by default in new 
 In a new terminal, run the following to install the simulator:
 
     source ~/miniconda3/bin/activate
-    mamba create -c conda-forge -c robotraconteur -n rr_training_sim robotraconteur_training_sim
+    mamba create -c conda-forge -c robotraconteur -c wasontech -n rr_training_sim robotraconteur_training_sim
 
 ## Running the iRobot Create Simulation
 
