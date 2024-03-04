@@ -9,7 +9,11 @@ tasks:
     {% endif %}
     cwd: {{ configdir }}
     environment:
+      {% if platform == "win32" %}
       GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }};{{ configdir }}/../models
+      {% else %}
+      GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }}:{{ configdir }}/../models
+      {% endif %}    
     quit-on-terminate: true
   - name: robot1
     program: python
