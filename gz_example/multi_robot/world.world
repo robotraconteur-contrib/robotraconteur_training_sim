@@ -1,0 +1,165 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+    <scene>
+      <!--<ambient>0.0 0.0 0.0 1.0</ambient>-->
+      <shadows>0</shadows>
+    </scene>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://table2</uri>
+      <pose>0 0.0 0. 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://box2</uri>
+      <name>box2_1</name>
+      <pose>-0.6 0.6 1. 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://box2</uri>
+      <name>box2_2</name>
+      <pose>0.6 0.6 1. 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://camera</uri>
+      <name>camera</name>
+      <pose>0. 0. 2.2 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://ur5e</uri>
+      <name>ur5e</name>
+      <pose>-0.7 0.0 1 0 0 3.141592653589793</pose>
+    </include>
+
+    <include>
+      <uri>model://abb</uri>
+      <name>abb</name>
+      <pose>0.7 0.0 0.8 0 0 3.141592653589793</pose>
+    </include>
+
+    <include>
+      <uri>model://sawyer</uri>
+      <name>sawyer</name>
+      <pose>0 -1.1 1.0 0 0 1.5707963267948966</pose>
+    </include>
+
+    <include>
+      <uri>model://landmark</uri>
+      <name>landmark</name>
+      <pose>0.2 -0.55 1.025 3.141592653589793 -0.0 0.0</pose>
+    </include>
+
+    <include>
+      <uri>model://round_bottle</uri>
+      <name>round_bottle_1</name>
+      <pose>-0.55 0.65 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://round_bottle</uri>
+      <name>round_bottle_2</name>
+      <pose>-0.65 0.65 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://round_bottle</uri>
+      <name>round_bottle_3</name>
+      <pose>-0.55 0.75 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://round_bottle</uri>
+      <name>round_bottle_4</name>
+      <pose>-0.65 0.75 1.1 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://cube200</uri>
+      <name>cube200_1</name>
+      <pose>-0.55 0.425 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube200</uri>
+      <name>cube200_2</name>
+      <pose>-0.65 0.425 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube200</uri>
+      <name>cube200_3</name>
+      <pose>-0.55 0.525 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube200</uri>
+      <name>cube200_4</name>
+      <pose>-0.65 0.525 1.1 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://perfume</uri>
+      <name>perfume_1</name>
+      <pose>0.55 0.65 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://perfume</uri>
+      <name>perfume_2</name>
+      <pose>0.65 0.65 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://perfume</uri>
+      <name>perfume_3</name>
+      <pose>0.55 0.75 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://perfume</uri>
+      <name>perfume_4</name>
+      <pose>0.65 0.75 1.1 0 0 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://cube201</uri>
+      <name>cube201_1</name>
+      <pose>0.55 0.425 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube201</uri>
+      <name>cube201_2</name>
+      <pose>0.65 0.425 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube201</uri>
+      <name>cube201_3</name>
+      <pose>0.55 0.525 1.1 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://cube201</uri>
+      <name>cube201_4</name>
+      <pose>0.65 0.525 1.1 0 0 0</pose>
+    </include>
+
+    <physics type="ode">
+      <max_step_size>0.001000</max_step_size>
+      <real_time_factor>1.000000</real_time_factor>
+      <real_time_update_rate>1000.0</real_time_update_rate>
+    </physics>
+    
+    <gravity>
+      0.0 0.0 -9.81
+    </gravity>
+    
+  </world>
+</sdf>

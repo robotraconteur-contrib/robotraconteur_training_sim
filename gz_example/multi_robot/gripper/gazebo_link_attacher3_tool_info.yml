@@ -1,0 +1,40 @@
+device_info:
+  device:
+    name: sawyer_gripper
+  manufacturer:
+    name: OSRF
+    uuid: ac7c2923-7d0c-46cc-82e5-0692c953c775
+  model:
+    name: gazebo_link_attacher_gripper
+    uuid: 431c02e6-fd5a-4936-a6cc-85c48b124e81
+  user_description: Gazebo simulated gripper using contact sensor and link attachment
+  serial_number: 123456789
+  device_classes:
+    - class_identifier:
+        name: gripper
+        uuid: ee974ee5-a5de-49c4-8fe6-831df8f2821c
+      subclasses: 
+        - vacuum
+  implemented_types:
+    - com.robotraconteur.robotics.tool.Tool
+tool_type: electric_gripper
+tool_capabilities:
+- open_close_command
+tcp:
+  translation:
+    x: 0
+    y: 0
+    z: 0.9
+  rotation:
+    x: 0
+    y: 0
+    z: 0
+    w: 1
+close_position: 0
+open_position: 1
+command_min: 0
+command_max: 1
+command_close: 0
+command_open: 1
+sensor_min:
+sensor_max:
