@@ -48,10 +48,10 @@ waypoints = []
 j_start = state1.joint_position
 j_end = [0, -1, -1.5, 0, 0, 0]
 
-for i in range(11):
+for i in range(251):
     wp = JointTrajectoryWaypoint()
-    wp.joint_position = (j_end - j_start)*(float(i)/10.0) + j_start
-    wp.time_from_start = i
+    wp.joint_position = (j_end - j_start)*(float(i)/250.0) + j_start
+    wp.time_from_start = i/25.0
     waypoints.append(wp)
 
 # Fill in the JointTrajectory structure
@@ -70,13 +70,12 @@ while (True):
 
     # Check the state
     robot_state = state_w.InValue
-
-    # Run traj_gen.Next(), and catch RR.StopIterationException thrown when motion is complete
-    try:
-        res = traj_gen.Next()
-        print(res)
-    except RR.StopIterationException:
+    
+    res, gen_state = traj_gen.TryNext()
+    if not res:
+        # Break if the trajectory is complete
         break
+    print(gen_state)    
 
     print(hex(c.robot_state.PeekInValue()[0].robot_state_flags))
 
@@ -84,8 +83,8 @@ while (True):
 
 waypoints = []
 
-for i in range(101):
-    t = float(i)/10.0
+for i in range(251):
+    t = float(i)/25.0
     wp = JointTrajectoryWaypoint()
     cmd = np.deg2rad(15)*np.sin(2*np.pi*(t/10.0))*np.array([1,0,0,0,0.5,-1])
     cmd = cmd + j_end
@@ -111,17 +110,21 @@ while (True):
     t = time.time()
 
     robot_state = state_w.InValue
-    try:
-        res = traj_gen.Next()        
-        print(res.action_status)
-    except RR.StopIterationException:
-        break
+   
+    res, gen_state = traj_gen.TryNext()
+    if not res:
+        # Break if the trajectory is complete
+        break 
+    print(gen_state.action_status)
+   
 while (True):
     t = time.time()
 
     robot_state = state_w.InValue
-    try:
-        res = traj_gen2.Next()
-        print(res.action_status)
-    except RR.StopIterationException:
+    
+    res, gen_state = traj_gen2.TryNext()
+    if not res:
+        # Break if the trajectory is complete
         break
+    print(gen_state.action_status)
+    
