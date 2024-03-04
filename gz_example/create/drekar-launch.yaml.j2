@@ -1,0 +1,17 @@
+name: rr_traiming_sim_create
+tasks:
+  - name: gazebo
+    program: gazebo
+    {% if platform == "win32" %}
+    args: --verbose create_world.world -s gazebo_robotraconteur_server_plugin.dll --robotraconteur-server-tcp-port=11346
+    {% else %}
+    args: --verbose create_world.world -s libgazebo_robotraconteur_server_plugin.so --robotraconteur-server-tcp-port=11346
+    {% endif %}
+    cwd: {{ configdir }}
+    environment:
+      {% if platform == "win32" %}
+      GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }};{{ configdir }}/../models
+      {% else %}
+      GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }}:{{ configdir }}/../models
+      {% endif %}    
+    quit-on-terminate: true
