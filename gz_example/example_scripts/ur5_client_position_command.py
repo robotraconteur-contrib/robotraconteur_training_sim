@@ -40,8 +40,10 @@ command_seqno = 1
 # Retreive the current joint position
 init_joint_pos = state_w.InValue.joint_position
 
+t0 = time.time()
+
 while (True):
-    t = time.time()
+    t = time.time() - t0
 
     # Retreive the current robot state
     robot_state = state_w.InValue

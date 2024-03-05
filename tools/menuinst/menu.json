@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://schemas.conda.io/menuinst-1.schema.json",
+    "menu_name": "Robot Raconteur Training Sim",
+    "menu_items": [
+      {
+        "name": "RR Training Sim (2ur5e)",
+        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/2ur5e/drekar-launch.yaml.j2", "--gui"],
+        "icon": "{{ PREFIX }}/gz_example/rricon.ico",
+        "platforms": {
+          "win": {
+            "desktop": false,
+            "quicklaunch": false
+          }
+        }
+      },
+      {
+        "name": "RR Training Sim (multi robot)",
+        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/multi_robot/drekar-launch.yaml.j2", "--gui"],
+        "icon": "{{ PREFIX }}/gz_example/rricon.ico",
+        "platforms": {
+            "win": {
+                "desktop": false,
+                "quicklaunch": false
+              }
+        }
+      },
+      {
+        "name": "RR Training Sim (create)",
+        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/create/drekar-launch.yaml.j2", "--gui"],
+        "icon": "{{ PREFIX }}/gz_example/rricon.ico",
+        "platforms": {
+            "win": {
+                "desktop": false,
+                "quicklaunch": false
+              }
+        }
+      }
+    ]
+  }

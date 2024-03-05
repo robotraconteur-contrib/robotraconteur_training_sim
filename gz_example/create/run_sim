@@ -1,17 +1,6 @@
 SCRIPT=`realpath -s $0`
 BASEDIR=`dirname $SCRIPT`
 
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$BASEDIR/../models
-
 cd $BASEDIR
 
-$CONDA_PREFIX/bin/gazebo --verbose create_world.world -s libgazebo_robotraconteur_server_plugin.so --robotraconteur-server-tcp-port=11346
-
-
-
-
-
-
-
-
-
+python -m drekar_launch --config-j2=drekar-launch.yaml.j2 --gui

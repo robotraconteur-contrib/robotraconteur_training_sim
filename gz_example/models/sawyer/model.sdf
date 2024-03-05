@@ -307,7 +307,7 @@
         </surface>
       </collision> -->
     </link>
-    <link name='head'>
+    <!-- <link name='head'>
       <pose frame=''>0 -0 0.3765 0 -0 0</pose>
       <inertial>
         <pose frame=''>0.005321 -2.7e-05 0.1021 0 -0 0</pose>
@@ -363,7 +363,7 @@
         </geometry>
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
-      </visual>
+      </visual> -->
       <!-- <collision name='head_collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
@@ -474,7 +474,7 @@
           </contact>
         </surface>
       </collision> -->
-    </link>
+    <!-- </link> -->
     <link name='right_l0'>
       <pose frame=''>-0 -0 0.08 0 -0 0</pose>
       <inertial>
@@ -1191,12 +1191,32 @@
       <self_collide>0</self_collide>
       <enable_wind>0</enable_wind>
       <kinematic>0</kinematic>
+      <visual name='right_l6_fixed_joint_visual_1'>
+        <!-- <pose frame=''>0 0 0.0213 0 -0 1.5708</pose> -->
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <!-- <uri>model://sawyer/meshes/connector_plate/connector_plate.STL</uri> -->
+            <uri>model://sawyer/meshes/sawyer_pv/l6.DAE</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/FlatBlack</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <emissive>0 0 0 1</emissive>
+        </material>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
       <visual name='right_l6_fixed_joint_lump__right_connector_plate_base_visual_1'>
-        <pose frame=''>0 0 0.0213 0 -0 1.5708</pose>
+        <!-- <pose frame=''>0 0 0.0213 0 -0 1.5708</pose> -->
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://sawyer/meshes/connector_plate/connector_plate.STL</uri>
+            <!-- <uri>model://sawyer/meshes/sawyer_pv/l6.DAE</uri> -->
           </mesh>
         </geometry>
         <material>
@@ -1340,9 +1360,9 @@
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>
       <!--<pose>-0.8249 -0.230516 0.06 1.60487 -0 3.1415926</pose>-->
-      <pose frame=''>1.03318 0.160336 0.319807 -3.14159 -1.55801 3.14159</pose>
+      <pose frame=''>1.01475 0.160336 0.319807 -3.14159 -1.55801 3.14159</pose>
     </model>
-    <joint name='head_pan' type='revolute'>
+    <!-- <joint name='head_pan' type='revolute'>
       <parent>right_l0</parent>
       <child>head</child>
       <pose frame=''>0 0 0 0 -0 0</pose>
@@ -1374,7 +1394,7 @@
           </suspension>
         </ode>
       </physics>
-    </joint>
+    </joint> -->
     <joint name='right_j0' type='revolute'>
       <parent>base</parent>
       <child>right_l0</child>
