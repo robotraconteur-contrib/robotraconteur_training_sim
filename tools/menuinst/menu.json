@@ -8,7 +8,10 @@
         "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/2ur5e/drekar-launch.yaml.j2", "--gui"],
         "icon": "{{ PREFIX }}/gz_example/rricon.ico",
         "platforms": {
-          "win": {}
+          "win": {
+            "desktop": false,
+            "quicklaunch": false
+          }
         }
       },
       {
@@ -16,7 +19,10 @@
         "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/multi_robot/drekar-launch.yaml.j2", "--gui"],
         "icon": "{{ PREFIX }}/gz_example/rricon.ico",
         "platforms": {
-          "win": {}
+            "win": {
+                "desktop": false,
+                "quicklaunch": false
+              }
         }
       },
       {
@@ -24,7 +30,10 @@
         "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/create/drekar-launch.yaml.j2", "--gui"],
         "icon": "{{ PREFIX }}/gz_example/rricon.ico",
         "platforms": {
-          "win": {}
+            "win": {
+                "desktop": false,
+                "quicklaunch": false
+              }
         }
       }
     ]
