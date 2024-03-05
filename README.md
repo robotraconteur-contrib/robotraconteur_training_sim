@@ -33,6 +33,7 @@ Open the Miniconda3 prompt by clicking Start (Windows icon on left of taskbar) -
 In the terminal, run the following to install the simulator:
 
     mamba create -c conda-forge -c robotraconteur -c wasontech -n rr_training_sim robotraconteur_training_sim
+    
 
 ### Linux
 
