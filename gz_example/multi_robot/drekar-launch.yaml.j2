@@ -1,0 +1,88 @@
+name: rr_training_sim_multi_robot
+tasks:
+  - name: gazebo
+    program: gazebo
+    {% if platform == "win32" %}
+    args: --verbose world.world -s gazebo_robotraconteur_server_plugin.dll --robotraconteur-server-tcp-port=11346
+    {% else %}
+    args: --verbose world.world -s libgazebo_robotraconteur_server_plugin.so --robotraconteur-server-tcp-port=11346
+    {% endif %}
+    cwd: {{ configdir }}
+    environment:
+      {% if platform == "win32" %}
+      GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }};{{ configdir }}/../models
+      {% else %}
+      GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }}:{{ configdir }}/../models
+      {% endif %}
+    quit-on-terminate: true
+  - name: robot1
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.robot --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer 
+      --robotraconteur-tcp-port=52511 --robotraconteur-nodename=ur5e_robot --model-name=ur5e
+      --robot-info-file=ur5e1_robot_default_config.yml
+    cwd: {{ configdir }}/../robot_config
+    restart: true
+    restart-backoff: 5
+    start-delay: 5
+  - name: robot2
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.robot --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer 
+      --robotraconteur-tcp-port=52512 --robotraconteur-nodename=abb_robot --model-name=abb
+      --robot-info-file=abb_1200_5_90_robot_default_config.yml
+    cwd: {{ configdir }}/../robot_config
+    restart: true
+    restart-backoff: 5
+    start-delay: 5
+  - name: robot3
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.robot --gazebo-url=rr+tcp://localhost:11346/?service=GazeboServer 
+      --robotraconteur-tcp-port=52513 --robotraconteur-nodename=sawyer_robot --model-name=sawyer
+      --robot-info-file=sawyer_robot_default_config.yml
+    cwd: {{ configdir }}/../robot_config
+    restart: true
+    restart-backoff: 5
+    start-delay: 5
+  - name: gripper1
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.gripper --robotraconteur-tcp-port=52521 --robotraconteur-nodename=ur5e_gripper 
+      --tool-info-file=gazebo_link_attacher1_tool_info.yml --gazebo-gripper-link=ur5e::gripper::body 
+      --gazebo-gripper-contact-sensor=ur5e::gripper::body::contact_sensor 
+      --gazebo-payload-prefix=round_bottle,perfume,cube
+    cwd: {{ configdir }}/gripper
+    restart: true
+    restart-backoff: 5
+    start-delay: 5
+  - name: gripper2
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.gripper --robotraconteur-tcp-port=52522 --robotraconteur-nodename=abb_gripper 
+      --tool-info-file=gazebo_link_attacher2_tool_info.yml --gazebo-gripper-link=abb::gripper::body 
+      --gazebo-gripper-contact-sensor=abb::gripper::body::contact_sensor 
+      --gazebo-payload-prefix=round_bottle,perfume,cube
+    cwd: {{ configdir }}/gripper
+    restart: true
+    restart-backoff: 5
+    start-delay: 5
+  - name: gripper3
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.gripper --robotraconteur-tcp-port=52523 --robotraconteur-nodename=sawyer_gripper 
+      --tool-info-file=gazebo_link_attacher3_tool_info.yml --gazebo-gripper-link=sawyer::gripper::body 
+      --gazebo-gripper-contact-sensor=sawyer::gripper::body::contact_sensor 
+      --gazebo-payload-prefix=round_bottle,perfume,cube
+    cwd: {{ configdir }}/gripper
+    restart: true
+    restart-backoff: 5
+    start-delay: 5
+  - name: camera
+    program: python
+    args: >-
+      -m gazebo_robotraconteur_sim_drivers.camera --camera-info-file=camerasensor.yaml
+    cwd: {{ configdir }}/../2ur5e/camera
+    restart: true
+    restart-backoff: 5
+    start-delay: 5

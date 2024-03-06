@@ -33,14 +33,20 @@
 
     <include>
       <uri>model://ur5e</uri>
-      <name>ur5e1</name>
+      <name>ur5e</name>
       <pose>-0.7 0.0 1 0 0 3.141592653589793</pose>
     </include>
 
     <include>
-      <uri>model://ur5e</uri>
-      <name>ur5e2</name>
-      <pose>0.7 0.0 1 0 0 0</pose>
+      <uri>model://abb</uri>
+      <name>abb</name>
+      <pose>0.7 0.0 0.8 0 0 3.141592653589793</pose>
+    </include>
+
+    <include>
+      <uri>model://sawyer</uri>
+      <name>sawyer</name>
+      <pose>0 -1.1 1.0 0 0 1.5707963267948966</pose>
     </include>
 
     <include>

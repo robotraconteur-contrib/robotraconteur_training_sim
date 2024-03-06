@@ -104,7 +104,7 @@
         </inertia>
         <pose frame=''>0 0 0 0 -0 0</pose>
       </inertial>
-      <pose frame=''>-0 0 -0.5 0 -0 0</pose>
+      <pose frame=''>-0 0 -0.4 0 -0 0</pose>
       <gravity>1</gravity>
       <self_collide>0</self_collide>
       <kinematic>0</kinematic>
@@ -114,7 +114,7 @@
         <geometry>
           <cylinder>
             <radius>0.2</radius>
-            <length>1.0</length>
+            <length>0.8</length>
           </cylinder>
         </geometry>
         <material>
@@ -716,16 +716,16 @@
         </surface>
       </collision> -->
     </link>
-    <model name='abbgripper'>
+    <model name='gripper'>
       <link name='body'>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
-        <pose frame=''>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 -0 0</pose>
         <gravity>1</gravity>
         <inertial>
           <mass>0.05</mass>
-          <pose frame=''>0 0 0 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <inertia>
             <ixx>1</ixx>
             <ixy>0</ixy>
@@ -743,23 +743,56 @@
             </mesh>
           </geometry>
           <material>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>1 1 1 1</ambient>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0 0 0 1</specular>
-            <emissive>0 0 0 1</emissive>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
           </material>
-          <pose frame=''>0 0 0 0 -0 0</pose>
+          <pose>0 0 0 0 -0 0</pose>
           <transparency>0</transparency>
           <cast_shadows>1</cast_shadows>
         </visual>
+
+        <collision name="contact_sensor_collision">
+          <pose>0 0 -0.05 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.01</radius>
+              <length>0.10</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_without_contact>true</collide_without_contact>
+            </contact>
+          </surface>
+        </collision>
+
+        <sensor name="logical_camera" type="logical_camera">
+          <pose>0. 0 0 0 1.57 3.14159</pose>
+          <logical_camera>
+            <near>0.01</near>
+            <far>0.115</far>
+            <aspect_ratio>1</aspect_ratio>
+            <horizontal_fov>1</horizontal_fov>
+          </logical_camera>
+          <always_on>1</always_on>
+          <update_rate>100</update_rate>
+          <visualize>false</visualize>
+        </sensor>
+        <sensor name="contact_sensor" type="contact">
+          <contact>
+          <collision>contact_sensor_collision</collision>          
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
       </link>
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>
+      <!--<pose>-0.8249 -0.230516 0.06 1.60487 -0 3.1415926</pose>-->
       <pose frame=''>0.535744 0.003373 0.889074 3.14159 -1.55191 -3.14159</pose>
     </model>
+    
     <joint name='joint_1' type='revolute'>
       <parent>base_link</parent>
       <child>link_1</child>
@@ -977,7 +1010,7 @@
     </joint>
     <joint name='link_6_JOINT_0' type='fixed'>
       <parent>link_6</parent>
-      <child>abbgripper::body</child>
+      <child>gripper::body</child>
       <pose frame=''>0 0 0 0 -0 0</pose>
       <physics>
         <ode>
@@ -998,5 +1031,28 @@
     </joint>
     <static>0</static>
     <allow_auto_disable>1</allow_auto_disable>
+
+    <gazebo_robotraconteur_server_plugin_model>      
+      <kinematic_joint_controller>
+        <joint name="joint_1">
+          <initial_position>0</initial_position>
+        </joint>
+        <joint name="joint_2">
+          <initial_position>0.174532</initial_position>
+        </joint>
+        <joint name="joint_3">
+          <initial_position>0.523598</initial_position>
+        </joint>
+        <joint name="joint_4">
+          <initial_position>0</initial_position>
+        </joint>
+        <joint name="joint_5">
+          <initial_position>0.872664</initial_position>
+        </joint>
+        <joint name="joint_6">
+          <initial_position>0</initial_position>
+        </joint>
+      </kinematic_joint_controller>      
+    </gazebo_robotraconteur_server_plugin_model>
   </model>
 </sdf>
