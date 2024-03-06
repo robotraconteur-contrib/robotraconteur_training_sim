@@ -2,19 +2,48 @@
 
 # Robot Raconteur Training Simulator
 
+The Robot Raconteur Training Simulator is a Gazebo based simulator designed to help users learn Robot Raconteur.
+It provides simulated devices and Robot Raconteur device drivers.
+
+<img src="training_sim_window.png" alt="simulator window 2ur5e" width="400px">
+<img src="training_sim_multi_window.png" alt="simulator window multi robot" width="400px">
+<img src="training_sim_create.png" alt="simulator window create" width="400px">
+
+
+
+Table of Contents:
+
+- [Introduction](#introduction)
+- [Connection Info](#connection-info)
+- [Installation](#installation)
+- [Running the iRobot Create Simulation](#running-the-irobot-create-simulation)
+- [Running the UR5e Simulation](#running-the-ur5e-simulation)
+- [Running the Multi Robot Simulation](#running-the-multi-robot-simulation)
+- [PyRI Programming Environment](#pyri-programming-environment)
+- [Troubleshooting](#troubleshooting)
+
 ## Introduction
 
-![simulator window](https://github.com/robotraconteur-contrib/robotraconteur_training_sim/blob/master/training_sim_window.PNG?raw=true)
-
-![simulator window create](training_sim_create.png?raw=true)
-
-The Robot Raconteur Training Simulator is a Gazebo based simulator that contains two scenes:
+The Robot Raconteur Training Simulator is a Gazebo based simulator that contains three scenes:
 
 **Universal Robot UR5e Scene**
 
 * Two Universal Robots UR5e Robots
 * Two simulated vacuum grippers
 * An overhead simulated camera
+* Small payloads to manipulate with robots
+* Chessboard calibration target
+
+**Multi Robot Scene**
+
+* Three robots from different vendors:
+  * Universal Robots UR5e Robot
+  * ABB IRB 1200 5-90
+  * ReThink Sawyer
+* Three simulated vacuum grippers
+* An overhead simulated camera
+* Small payloads to manipulate with robots
+* Chessboard calibration target
 
 **iRobot Create Scene**
 
@@ -22,22 +51,126 @@ The Robot Raconteur Training Simulator is a Gazebo based simulator that contains
 * Stereo camera mast on robot
 * "Cafe" scene from Gazebo model library
 
+## Connection Info
+
+The training simulator provides multiple Robot Raconteur services. This section contains the default Robot Raconteur 
+connection information for clients to connect to the service. Also see the 
+[Robot Raconteur Service Browser](https://github.com/robotraconteur/RobotRaconteur_ServiceBrowser) to detect
+services on the network. The services can be connected using a URL, Discovery, or Subscriptions. See the Robot Raconteur
+documentation for more information on connecting to services.
+
+### 2ur5e Scene Connection Info
+
+* UR5e Robot 1
+  * URL: `rr+tcp://localhost:52511?service=robot`
+  * Device Name: `ur5e_robot`
+  * Node Name: `ur5e1_robot`
+  * Service Name: `robot`
+  * Root Object Type: `com.robotraconteur.robotics.robot.Robot`
+* UR5e Robot 2
+  * URL: `rr+tcp://localhost:52512?service=robot`
+  * Device Name: `ur5e_robot_2`
+  * Node Name: `ur5e2_robot`
+  * Service Name: `robot`
+  * Root Object Type: `com.robotraconteur.robotics.robot.Robot`
+* Gripper 1
+  * URL: `rr+tcp://localhost:52521?service=gripper`
+  * Device Name: `ur5e1_gripper`
+  * Node Name: `ur5e1_gripper`
+  * Service Name: `gripper`
+  * Root Object Type: `com.robotraconteur.robotics.tool.Tool`
+* Gripper 2
+  * URL: `rr+tcp://localhost:52522?service=gripper`
+  * Device Name: `ur5e2_gripper`
+  * Node Name: `ur5e2_gripper`
+  * Service Name: `gripper`
+  * Root Object Type: `com.robotraconteur.robotics.tool.Tool`
+* Camera
+  * URL: `rr+tcp://localhost:59823?service=camera`
+  * Device Name: `gazebo_camera`
+  * Node Name: `com.robotraconteur.imaging.camera`
+  * Service Name: `camera`
+  * Root Object Type: `com.robotraconteur.imaging.Camera`
+* Gazebo
+  * URL: `rr+tcp://localhost:11346?service=GazeboServer`
+  * Device Name: `gazebosim`
+  * Node Name: `org.gazebosim.gazebo.GazeboServer`
+  * Service Name: `GazeboServer`
+  * Root Object Type: `org.gazebosim.gazebo.Server`
+
+### Multi Robot Scene Connection Info
+
+* UR5e Robot
+  * URL: `rr+tcp://localhost:52511?service=robot`
+  * Device Name: `ur5e_robot`
+  * Node Name: `ur5e_robot`
+  * Service Name: `robot`
+  * Root Object Type: `com.robotraconteur.robotics.robot.Robot`
+* ABB Robot
+  * URL: `rr+tcp://localhost:52512?service=robot`
+  * Device Name: `abb_robot`
+  * Node Name: `abb_robot`
+  * Service Name: `robot`
+  * Root Object Type: `com.robotraconteur.robotics.robot.Robot`
+* Sawyer Robot
+  * URL: `rr+tcp://localhost:52513?service=robot`
+  * Device Name: `sawyer_robot`
+  * Node Name: `sawyer_robot`
+  * Service Name: `robot`
+  * Root Object Type: `com.robotraconteur.robotics.robot.Robot`
+* Gripper 1
+  * URL: `rr+tcp://localhost:52521?service=gripper`
+  * Device Name: `ur5e_gripper`
+  * Node Name: `ur5e_gripper`
+  * Service Name: `gripper`
+  * Root Object Type: `com.robotraconteur.robotics.tool.Tool`
+* Gripper 2
+  * URL: `rr+tcp://localhost:52522?service=gripper`
+  * Device Name: `abb_gripper`
+  * Node Name: `abb_gripper`
+  * Service Name: `gripper`
+  * Root Object Type: `com.robotraconteur.robotics.tool.Tool`
+* Gripper 3
+  * URL: `rr+tcp://localhost:52523?service=gripper`
+  * Device Name: `sawyer_gripper`
+  * Node Name: `sawyer_gripper`
+  * Service Name: `gripper`
+  * Root Object Type: `com.robotraconteur.robotics.tool.Tool`
+* Camera
+  * URL: `rr+tcp://localhost:59823?service=camera`
+  * Device Name: `gazebo_camera`
+  * Node Name: `com.robotraconteur.imaging.camera`
+  * Service Name: `camera`
+  * Root Object Type: `com.robotraconteur.imaging.Camera`
+
+### iRobot Create Scene Connection Info
+
+Use examples in https://github.com/robotraconteur/RobotRaconteur_Python_Examples to operate the iRobot Create
+scene.
+
+* Gazebo
+  * URL: `rr+tcp://localhost:11346?service=GazeboServer`
+  * Device Name: `gazebosim`
+  * Node Name: `org.gazebosim.gazebo.GazeboServer`
+  * Service Name: `GazeboServer`
+  * Root Object Type: `org.gazebosim.gazebo.Server`
+
 ## Installation
 
 ### Windows
 
-Download and install Miniconda for Python 3.8 from https://docs.conda.io/en/latest/miniconda.html . See https://conda.io/projects/conda/en/latest/user-guide/install/index.html for installation instructions.
+Download and install Miniforge for Python 3.11 from https://github.com/conda-forge/miniforge?tab=readme-ov-file#download .
 
-Open the Miniconda3 prompt by clicking Start (Windows icon on left of taskbar) -> Anaconda3 (64-bit) -> Anaconda Prompt (miniconda3)
+Open the Miniforge3 prompt by clicking Start -> Miniforge3 ->  Miniforge Prompt
 
 In the terminal, run the following to install the simulator:
 
-    mamba create -c conda-forge -c robotraconteur -c wasontech -n rr_training_sim robotraconteur_training_sim
+    conda create -c conda-forge -c robotraconteur -c wasontech -n rr_training_sim robotraconteur_training_sim
     
 
 ### Linux
 
-Download and install Miniconda for Python 3.8 from https://docs.conda.io/en/latest/miniconda.html . See https://conda.io/projects/conda/en/latest/user-guide/install/index.html for installation instructions.
+Download and install Miniforge for Python 3.11 from https://github.com/conda-forge/miniforge?tab=readme-ov-file#download .
 
 The Linux installer will configure your system to start conda by default in new terminals. This can be disabled with the following command:
 
@@ -45,8 +178,8 @@ The Linux installer will configure your system to start conda by default in new 
 
 In a new terminal, run the following to install the simulator:
 
-    source ~/miniconda3/bin/activate
-    mamba create -c conda-forge -c robotraconteur -c wasontech -n rr_training_sim robotraconteur_training_sim
+    source ~/miniforge3/bin/activate
+    conda create -c conda-forge -c robotraconteur -c wasontech -n rr_training_sim robotraconteur_training_sim
 
 ## Running the iRobot Create Simulation
 
@@ -55,28 +188,30 @@ repository. See https://github.com/robotraconteur/RobotRaconteur_Python_Examples
 
 ### Windows
 
-To run the simulation, open the Anaconda prompt by clicking Start (Windows icon on left of taskbar) -> Anaconda3 (64-bit) -> Anaconda Prompt (miniconda3)
+A shortcut is created in the Start menu on Windows. Click Start -> Robot Raconteur Training Sim -> RR Training Sim (create)
+
+To run the simulation from the command line, open the Miniforge3 prompt by clicking Start -> Miniforge3 -> Miniforge Prompt
 
 Run the following command:
 
     conda activate rr_training_sim
-    cd %CONDA_PREFIX%\gz_example\create
-    run_sim
+    run_create_sim
 
 ### Linux
 
 Open a new prompt and run the following commands to run the simulation:
 
-    source ~/miniconda3/bin/activate
+    source ~/miniforge3/bin/activate
     conda activate rr_training_sim
-    cd $CONDA_PREFIX/gz_example/create
-    run_sim
+    run_create_sim
 
 ## Running the UR5e Simulation
 
 ### Windows
 
-To run the simulation, open the Anaconda prompt by clicking Start (Windows icon on left of taskbar) -> Anaconda3 (64-bit) -> Anaconda Prompt (miniconda3)
+A shortcut is created in the Start menu on Windows. Click Start -> Robot Raconteur Training Sim -> RR Training Sim (2ur5e)
+
+To run the simulation from the command line, open the Miniforge3 prompt by clicking Start -> Miniforge3 -> Miniforge Prompt
 
 Run the following command:
 
@@ -87,7 +222,7 @@ Run the following command:
 
 Open a new prompt and run the following commands to run the simulation:
 
-    source ~/miniconda3/bin/activate
+    source ~/miniforge3/bin/activate
     conda activate rr_training_sim
     run_2ur5e_sim
 
@@ -125,21 +260,42 @@ Linux:
 
 *Camera streaming* `camera_client_image.py` - An example camera client that streams a preview of the overhead camera.
 
-## Driver URLs
+## Running the Multi Robot Simulation
 
-The following are the Robot Racontuer connection URLs for the virtual device drivers:
+### Windows
 
-UR Robot 1: `rr+tcp://localhost:52511?service=robot`
+A shortcut is created in the Start menu on Windows. Click Start -> Robot Raconteur Training Sim -> RR Training Sim (multi robot)
 
-UR Robot 2: `rr+tcp://localhost:52512?service=robot`
+To run the simulation from the command line, open the Miniforge3 prompt by clicking Start -> Miniforge3 -> Miniforge Prompt
 
-Tool 1: `rr+tcp://localhost:52521?service=gripper`
+Run the following command:
 
-Tool 2: `rr+tcp://localhost:52522?service=gripper`
+    conda activate rr_training_sim
+    run_multi_robot_sim   
 
-Camera: `rr+tcp://localhost:59823?service=camera`
+### Linux
+
+Open a new prompt and run the following commands to run the simulation:
+
+    source ~/miniforge3/bin/activate
+    conda activate rr_training_sim
+    run_multi_robot_sim
+
+## PyRI Programming Environment
+
+The PyRI Open-Source Programming Environment and Teach Pendant can be used to operate and program the devices training simulator.
+It can manipulate the robots, operate the tools, and read the camera. It can also program the robots using restricted 
+Python and Blockly. See https://github.com/pyri-project/pyri-core/blob/master/README.md
+
+![](https://github.com/pyri-project/pyri-core/blob/master/doc/figures/readme/jog_panel.png?raw=true) 
+![](https://github.com/pyri-project/pyri-core/blob/master/doc/figures/readme/pick_and_drop_blockly.png?raw=true)
+![](https://github.com/pyri-project/pyri-core/blob/master/doc/figures/readme/pick_and_drop_pyri.png?raw=true) 
+![](https://github.com/pyri-project/pyri-core/blob/master/doc/figures/readme/camera_viewer_panel.png?raw=true) 
 
 ## Troubleshooting
+
+See the log files for the output of processes. On Windows, these are located at `%LOCALAPPDATA%\drekar-launch\drekar-launch\Logs` .
+On Linux the logs are located at `$HOME/.cache/drekar-launch/log` .
 
 *Gazebo won't start*
 
@@ -151,6 +307,11 @@ Linux sockets have a behavior called `TIME_WAIT`, which means the socket will re
 
 *Connection Refused when trying to connect using a script*
 
-Check to make sure the drivers have all opened properly. There should be a terminal for Gazebo and 5 drivers. Check the URL of the driver. Real device drivers and the simulation typically use different ports and hostnames. The real UR robot driver defaults to `rr+tcp://localhost:58652?service=robot`, an the real camera driver defaults to `rr+tcp://localhost/?service=camera`.
+Check to make sure the drivers have all opened properly. Check the log files to make sure that all the processes
+are operating correctly. More debug information is available if the simulations are launched from the command line.
+Check the connection info in the section above for the simulation. Real devices will have different connection URLs
+and other values. Check the driver documentation for more information on connecting. Use the
+[Robot Raconteur Service Browser](https://github.com/robotraconteur/RobotRaconteur_ServiceBrowser) 
+to see if the driver is discoverable on the network. Try (temporarily) disabling the firewall if networking between
+computers is being used.
 
-The Robot Raconteur Service Browser https://github.com/robotraconteur/RobotRaconteur_ServiceBrowser can also be used to view the services running on the network. If discovery is not working on Windows, try disabling the firewall.
