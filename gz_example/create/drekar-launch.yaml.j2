@@ -1,17 +1,35 @@
 name: rr_training_sim_create
 tasks:
-  - name: gazebo
-    program: gazebo
-    {% if platform == "win32" %}
-    args: --verbose create_world.world -s gazebo_robotraconteur_server_plugin.dll --robotraconteur-server-tcp-port=11346
-    {% else %}
-    args: --verbose create_world.world -s libgazebo_robotraconteur_server_plugin.so --robotraconteur-server-tcp-port=11346
-    {% endif %}
+  - name: gz_sim
+    program: gz
+    args: sim -s -r --wait-for-assets=1 create_world.world
     cwd: {{ configdir }}
     environment:
       {% if platform == "win32" %}
-      GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }};{{ configdir }}/../models
+      GZ_SIM_RESOURCE_PATH: {{ env.get("GZ_SIM_RESOURCE_PATH","") }};{{ configdir }}/../models
       {% else %}
-      GAZEBO_MODEL_PATH: {{ env["GAZEBO_MODEL_PATH"] }}:{{ configdir }}/../models
-      {% endif %}    
+      GZ_SIM_RESOURCE_PATH: {{ env.get("GZ_SIM_RESOURCE_PATH","") }}:{{ configdir }}/../models
+      {% endif %}
     quit-on-terminate: true
+  - name: gz_gui
+    program: gz
+    args: sim -g --gui-config gz_gui.config
+    cwd: {{ configdir }}
+    environment:
+      {% if platform == "win32" %}
+      GZ_SIM_RESOURCE_PATH: {{ env.get("GZ_SIM_RESOURCE_PATH", "") }};{{ configdir }}/../models
+      {% else %}
+      GZ_SIM_RESOURCE_PATH: {{ env.get("GZ_SIM_RESOURCE_PATH", "") }}:{{ configdir }}/../models
+      {% endif %}
+    quit-on-terminate: true
+  - name: create_driver
+    program: python
+    args: gazebo_irobot_create_service.py
+    cwd: {{ configdir }}
+    start-delay: 5
+  - name: webcam_driver
+    program: python
+    args: gazebo_simple_webcam_service.py
+    cwd: {{ configdir }}
+    start-delay: 5
+
