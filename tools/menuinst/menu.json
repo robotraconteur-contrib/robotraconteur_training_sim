@@ -4,7 +4,7 @@
     "menu_items": [
       {
         "name": "RR Training Sim (2ur5e)",
-        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/opt/robotraconteur_training_sim/2ur5e/drekar-launch.yaml.j2", "--gui"],
+        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/opt/robotraconteur_training_sim/2ur5e/drekar-launch.yaml.j2"],
         "icon": "{{ PREFIX }}/opt/robotraconteur_training_sim/rricon.ico",
         "description": "Robot Raconteur Training Simulator with 2ur5e scene",
         "platforms": {
@@ -16,7 +16,7 @@
       },
       {
         "name": "RR Training Sim (multi robot)",
-        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/opt/robotraconteur_training_sim/multi_robot/drekar-launch.yaml.j2", "--gui"],
+        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/opt/robotraconteur_training_sim/multi_robot/drekar-launch.yaml.j2"],
         "icon": "{{ PREFIX }}/opt/robotraconteur_training_sim/rricon.ico",
         "description": "Robot Raconteur Training Simulator with multi robot scene",
         "platforms": {
@@ -28,7 +28,7 @@
       },
       {
         "name": "RR Training Sim (create)",
-        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/opt/robotraconteur_training_sim/create/drekar-launch.yaml.j2", "--gui"],
+        "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/opt/robotraconteur_training_sim/create/drekar-launch.yaml.j2"],
         "icon": "{{ PREFIX }}/opt/robotraconteur_training_sim/rricon.ico",
         "description": "Robot Raconteur Training Simulator with iRobot Create scene",
         "platforms": {
