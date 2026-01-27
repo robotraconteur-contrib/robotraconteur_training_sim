@@ -239,11 +239,11 @@ The simulator comes with several Robot Raconteur driver client example scripts. 
 
 Windows:
 
-    cd %CONDA_PREFIX%\gz_example\example_scripts
+    cd %CONDA_PREFIX%\opt\robotraconteur_training_sim\example_scripts
 
 Linux:
 
-    cd $CONDA_PREFIX/gz_example/example_scripts
+    cd $CONDA_PREFIX/opt/robotraconteur_training_sim/example_scripts
 
 ### Robot Motion Examples
 
