@@ -2,7 +2,7 @@
 
 # Robot Raconteur Training Simulator
 
-The Robot Raconteur Training Simulator is a Gazebo based simulator designed to help users learn Robot Raconteur.
+The Robot Raconteur Training Simulator is a GZ Sim (formerly Gazebo) based simulator designed to help users learn Robot Raconteur.
 It provides simulated devices and Robot Raconteur device drivers.
 
 <img src="training_sim_window.png" alt="simulator window 2ur5e" width="400px">
@@ -24,7 +24,7 @@ Table of Contents:
 
 ## Introduction
 
-The Robot Raconteur Training Simulator is a Gazebo based simulator that contains three scenes:
+The Robot Raconteur Training Simulator is a GZ Sim (formerly Gazebo) based simulator that contains three scenes:
 
 **Universal Robot UR5e Scene**
 
@@ -145,21 +145,28 @@ documentation for more information on connecting to services.
 
 ### iRobot Create Scene Connection Info
 
-Use examples in https://github.com/robotraconteur/RobotRaconteur_Python_Examples to operate the iRobot Create
-scene.
-
 * Gazebo
   * URL: `rr+tcp://localhost:11346?service=GazeboServer`
   * Device Name: `gazebosim`
   * Node Name: `org.gazebosim.gazebo.GazeboServer`
   * Service Name: `GazeboServer`
   * Root Object Type: `org.gazebosim.gazebo.Server`
+* iRobot Create Example Service
+  * URL: `rr+tcp://localhost:22354?service=create`
+  * Node Name: `experimental.create3`
+  * Service Name: `create`
+  * Root Object Type: `experimental.create3.Create`
+* Simple Multi Webcam Service
+  * URL: `rr+tcp://localhost:22355?service=multiwebcam`
+  * Node Name: `experimental.simplewebcam3_multi`
+  * Service Name: `multiwebcam`
+  * Root Object Type: `experimental.simplewebcam3.WebcamHost`
 
 ## Installation
 
 ### Windows
 
-Download and install Miniforge for Python 3.11 from https://github.com/conda-forge/miniforge?tab=readme-ov-file#download .
+Download and install Miniforge for Python from https://github.com/conda-forge/miniforge?tab=readme-ov-file#download .
 
 Open the Miniforge3 prompt by clicking Start -> Miniforge3 ->  Miniforge Prompt
 
@@ -170,7 +177,7 @@ In the terminal, run the following to install the simulator:
 
 ### Linux
 
-Download and install Miniforge for Python 3.11 from https://github.com/conda-forge/miniforge?tab=readme-ov-file#download .
+Download and install Miniforge for Python from https://github.com/conda-forge/miniforge?tab=readme-ov-file#download .
 
 The Linux installer will configure your system to start conda by default in new terminals. This can be disabled with the following command:
 
@@ -183,8 +190,8 @@ In a new terminal, run the following to install the simulator:
 
 ## Running the iRobot Create Simulation
 
-The iRobot Create scene only contains the simulation. The simulated drivers are contained in the Python Examples
-repository. See https://github.com/robotraconteur/RobotRaconteur_Python_Examples
+The iRobot Create scene will start drivers that are compatible with the example clients found in the main Robot Raconteur
+repository https://github.com/robotraconteur/robotraconteur/tree/master/examples/irobot_create
 
 ### Windows
 
@@ -297,11 +304,8 @@ Python and Blockly. See https://github.com/pyri-project/pyri-core/blob/master/RE
 See the log files for the output of processes. On Windows, these are located at `%LOCALAPPDATA%\drekar-launch\drekar-launch\Logs` .
 On Linux the logs are located at `$HOME/.cache/drekar-launch/log` .
 
-*Gazebo won't start*
 
-Sometimes `gzserver` fails to quit properly. On Linux, run `killall gzserver`. On Windows, use the Task Manager -> Details tab to kill `gzserver`.
-
-*Gazebo or Drivers fail to start again after closing all windows*
+*GZ Sim or Drivers fail to start again after closing all windows*
 
 Linux sockets have a behavior called `TIME_WAIT`, which means the socket will remain open for a few minutes after the program has exited. This can be checked using the command `netstat -an | grep TIME_WAIT`. Try waiting a few minutes before restarting the simulation, or reboot the computer.
 
