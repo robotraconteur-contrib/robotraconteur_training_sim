@@ -1,12 +1,12 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
-    "$id": "https://schemas.conda.io/menuinst-1.schema.json",
+    "$schema": "https://schemas.conda.org/menuinst/menuinst-1-1-0.schema.json",
     "menu_name": "Robot Raconteur Training Sim",
     "menu_items": [
       {
         "name": "RR Training Sim (2ur5e)",
         "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/2ur5e/drekar-launch.yaml.j2", "--gui"],
         "icon": "{{ PREFIX }}/gz_example/rricon.ico",
+        "description": "Robot Raconteur Training Simulator with 2ur5e scene",
         "platforms": {
           "win": {
             "desktop": false,
@@ -18,6 +18,7 @@
         "name": "RR Training Sim (multi robot)",
         "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/multi_robot/drekar-launch.yaml.j2", "--gui"],
         "icon": "{{ PREFIX }}/gz_example/rricon.ico",
+        "description": "Robot Raconteur Training Simulator with multi robot scene",
         "platforms": {
             "win": {
                 "desktop": false,
@@ -29,6 +30,7 @@
         "name": "RR Training Sim (create)",
         "command": ["python", "-m", "drekar_launch", "--config-j2={{ PREFIX }}/gz_example/create/drekar-launch.yaml.j2", "--gui"],
         "icon": "{{ PREFIX }}/gz_example/rricon.ico",
+        "description": "Robot Raconteur Training Simulator with iRobot Create scene",
         "platforms": {
             "win": {
                 "desktop": false,
