@@ -14,11 +14,14 @@
           </box>
         </geometry>
         <material>
-          <script>
+          <!--script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
             <name>Gazebo/Wood</name>
           </script>
-          <shader type='pixel'/>
+          <shader type='pixel'/>-->
+          <ambient>0.2 0.2 0.2 1</ambient>
+          <diffuse>0.59 0.44 0.2 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
         </material>
         <transparency>0</transparency>
         <cast_shadows>1</cast_shadows>
