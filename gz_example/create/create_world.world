@@ -1,16 +1,119 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
   <world name="default">
+  <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    <plugin
+      filename="gz-sim-contact-system"
+      name="gz::sim::systems::Contact">
+    </plugin>
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-altimeter-system"
+      name="gz::sim::systems::Altimeter">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-magnetometer-system"
+      name="gz::sim::systems::Magnetometer">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-forcetorque-system"
+      name="gz::sim::systems::ForceTorque">
+    </plugin>
+
+    <plugin
+      filename="gz-sim-logical-camera-system"
+      name="gz::sim::systems::LogicalCamera">
+    </plugin>
+
+    <plugin
+            filename="gz-sim-robotraconteur-server-plugin"
+            name="RobotRaconteur::GzSim::ServerPlugin">
+            <server-tcp-port>11346</server-tcp-port>
+    </plugin>
     <scene>
-      <!--<ambient>0.0 0.0 0.0 1.0</ambient>-->
-      <shadows>0</shadows>
+      <ambient>0.6 0.6 0.6 1.0</ambient>
+      <shadows>false</shadows>
     </scene>
-    <include>
-      <uri>model://ground_plane</uri>
-    </include>
-    <include>
-      <uri>model://sun</uri>
-    </include>
+    <physics name="default_physics" default="true" type="dart">
+      <dart>
+        <!-- DART-specific parameters here, if needed -->
+        <ode>
+          <solver>
+            <type>default</type>
+          </solver>
+        </ode>
+      </dart>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0</mu>
+                <mu2>0</mu2>
+                <fdir1>0 0 0</fdir1>
+                <slip1>0</slip1>
+                <slip2>0</slip2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
     <include>
       <uri>model://cafe</uri>
       <pose>0 0.0 -0.18 0 0 0</pose>
@@ -24,23 +127,9 @@
       <pose>0 0 0 0 0 0</pose>
     </include>
 
-   <physics type="ode">
-      <max_step_size>0.001000</max_step_size>
-      <real_time_factor>1.000000</real_time_factor>
-      <real_time_update_rate>1000.0</real_time_update_rate>
-    </physics>
-    
     <gravity>
       0.0 0.0 -9.81
-    </gravity>
-
-    <gui fullscreen='0'>
-      <camera name='user_camera'>
-        <pose>2.84698 -3.89688 1.75754 0 0.339643 2.16419</pose>
-        <view_controller>orbit</view_controller>
-        <projection_type>perspective</projection_type>
-      </camera>
-    </gui>
+    </gravity>   
     
   </world>
 </sdf>

@@ -5,11 +5,11 @@
       <inertial>
         <pose>0.001453 -0.000453 0.029787 0 0 0</pose>
         <inertia>
-          <ixx>0.058640</ixx>
-          <ixy>0.000124</ixy>
-          <ixz>0.000615</ixz>
-          <iyy>0.058786</iyy>
-          <iyz>0.000014</iyz>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
           <izz>1.532440</izz>
         </inertia>
         <mass>2.234000</mass>
@@ -22,6 +22,17 @@
             <length>0.061163</length>
           </cylinder>
         </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+        </surface>
       </collision>
       <visual name="base_visual">
         <pose>0 0 0.047800 0 0 0</pose>
@@ -187,7 +198,7 @@
           <box><size>0.0254 0.1524 0.0127</size></box>
         </geometry>
       </visual>
-      <visual name="left_camera">
+      <visual name="left_camera_vis">
         <pose>0.0772 0.0508 0.4314 1.570790 0 1.570790</pose>
         <geometry>
         <mesh>
@@ -201,7 +212,7 @@
           <emissive>0 0 0 1</emissive>
         </material> 
       </visual>
-      <visual name="right_camera">
+      <visual name="right_camera_vis">
         <pose>0.0772 -0.0508 0.4314 1.570790 0 1.570790</pose>
         <geometry>
         <mesh>
@@ -224,7 +235,7 @@
           <image>
             <width>1280</width>
             <height>720</height>
-            <format>B8G8R8</format>
+            <format>R8G8B8</format>
           </image>
           <!--<horizontal_fov>1.047</horizontal_fov>-->
           <lens>
@@ -253,7 +264,7 @@
           <image>
             <width>1280</width>
             <height>720</height>
-            <format>B8G8R8</format>
+            <format>R8G8B8</format>
           </image>
           <!--<horizontal_fov>1.047</horizontal_fov>-->
           <lens>
@@ -361,7 +372,7 @@
         </geometry>
       </visual>
     </link>
-    <joint name="left_wheel" type="revolute">
+    <joint name="left_wheel_joint" type="revolute">
       <parent>base</parent>
       <child>left_wheel</child>
       <axis>
@@ -369,7 +380,7 @@
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
     </joint>
-    <joint name="right_wheel" type="revolute">
+    <joint name="right_wheel_joint" type="revolute">
       <parent>base</parent>
       <child>right_wheel</child>
       <axis>

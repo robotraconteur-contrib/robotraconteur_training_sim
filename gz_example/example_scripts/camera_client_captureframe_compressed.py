@@ -3,20 +3,11 @@
 #a s
 
 from RobotRaconteur.Client import *
+from RobotRaconteurCompanion.Util.ImageUtil import ImageUtil
 
 import cv2, sys, traceback, argparse
 import numpy as np
 
-
-#Function to take the data structure returned from the camera service
-#with a compressed image and convert it to an OpenCV array
-def CompressedImageToMat(compressed_image):
-
-	frame2 = cv2.imdecode(compressed_image.data,1)
-	
-	return frame2
-
-image_consts=None
 
 def main():
 	#Accept the names of the webcams and the nodename from command line
@@ -29,13 +20,13 @@ def main():
 	#Connect to the camera
 	cam=RRN.ConnectService(url)
 
-	global image_consts
-	image_consts = RRN.GetConstants('com.robotraconteur.image', cam)
+	# Use companion util to decode images
+	img_util = ImageUtil(client_obj=cam)
 
 	# Capture the frame from the camera, returns in raw format
 	raw_frame = cam.capture_frame_compressed()
 	#Convert raw_img to opencv format
-	current_frame=CompressedImageToMat(raw_frame)
+	current_frame=img_util.compressed_image_to_array(raw_frame)
 
 	cv2.namedWindow("Image")
 

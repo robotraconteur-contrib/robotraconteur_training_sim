@@ -743,10 +743,10 @@
             </mesh>
           </geometry>
           <material>
-            <script>
+            <!--<script>
               <uri>__default__</uri>
               <name>__default__</name>
-            </script>
+            </script>-->
           </material>
           <pose>0 0 0 0 -0 0</pose>
           <transparency>0</transparency>
@@ -1025,34 +1025,11 @@
         </ode>
       </physics>
     </joint>
-    <joint name='fix to ground' type='fixed'>
+    <joint name='fix_to_ground' type='fixed'>
       <parent>world</parent>
-      <child>base_link</child>
+      <child>link_0</child>
     </joint>
     <static>0</static>
     <allow_auto_disable>1</allow_auto_disable>
-
-    <gazebo_robotraconteur_server_plugin_model>      
-      <kinematic_joint_controller>
-        <joint name="joint_1">
-          <initial_position>0</initial_position>
-        </joint>
-        <joint name="joint_2">
-          <initial_position>0.174532</initial_position>
-        </joint>
-        <joint name="joint_3">
-          <initial_position>0.523598</initial_position>
-        </joint>
-        <joint name="joint_4">
-          <initial_position>0</initial_position>
-        </joint>
-        <joint name="joint_5">
-          <initial_position>0.872664</initial_position>
-        </joint>
-        <joint name="joint_6">
-          <initial_position>0</initial_position>
-        </joint>
-      </kinematic_joint_controller>      
-    </gazebo_robotraconteur_server_plugin_model>
   </model>
 </sdf>

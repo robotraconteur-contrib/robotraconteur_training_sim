@@ -3,6 +3,7 @@
 #the camera. 
 
 from RobotRaconteur.Client import *
+from RobotRaconteurCompanion.Util.ImageUtil import ImageUtil
 
 import cv2, sys, traceback, argparse
 import numpy as np
@@ -11,15 +12,6 @@ import time
 import threading
 
 
-#Function to take the data structure returned from the Webcam service
-#and convert it to an OpenCV array
-def CompressedImageToMat(compressed_image):
-
-	frame2 = cv2.imdecode(compressed_image.data,1)
-	
-	return frame2
-
-image_consts=None
 current_compressed_frame=None
 new_frame_lock = threading.Lock()
 
@@ -52,8 +44,8 @@ def main():
 	#Connect to the camera
 	cam=RRN.ConnectService(url)
 
-	global image_consts
-	image_consts = RRN.GetConstants('com.robotraconteur.image', cam)
+	# Use companion util to decode images
+	img_util = ImageUtil(client_obj=cam)
 
 	#Connect the pipe FrameStream to get the PipeEndpoint p	
 	
@@ -77,7 +69,7 @@ def main():
 		#This is not ideal but good enough for demonstration
 
 		if (not current_compressed_frame is None):
-			current_frame = CompressedImageToMat(current_compressed_frame)
+			current_frame = img_util.compressed_image_to_array(current_compressed_frame)
 
 			cv2.imshow("Image",current_frame)
 		if cv2.waitKey(20)!=-1:

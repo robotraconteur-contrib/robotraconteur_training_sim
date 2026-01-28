@@ -3,22 +3,15 @@
 #the camera. 
 
 from RobotRaconteur.Client import *
+from RobotRaconteurCompanion.Util.ImageUtil import ImageUtil
 
 import cv2, sys, traceback, argparse
 import numpy as np
 import traceback
 
 
-#Function to take the data structure returned from the Webcam service
-#and convert it to an OpenCV array
-def ImageToMat(image):
-	
-	frame2=image.data.reshape([image.image_info.height, image.image_info.width, int(len(image.data)/(image.image_info.height*image.image_info.width))], order='C')
-	
-	return frame2
-
-image_consts=None
 current_frame=None
+img_util=None
 #This function is called when a new pipe packet arrives
 def new_frame(pipe_ep):
 	global current_frame
@@ -29,11 +22,12 @@ def new_frame(pipe_ep):
 		
 		image=pipe_ep.ReceivePacket()
 		#Convert the packet to an image and set the global variable
-		current_frame=ImageToMat(image)
+		current_frame=img_util.image_to_array(image)
 
 		return
 
 def main():
+	global img_util
 	#Accept the names of the camera and the nodename from command line
 	parser = argparse.ArgumentParser(description="RR plug and play client")
 	parser.add_argument("--type",type=str,default='rgb',help="type of image")
@@ -46,8 +40,8 @@ def main():
 	#Connect to the camera
 	cam=RRN.ConnectService(url)
 
-	global image_consts
-	image_consts = RRN.GetConstants('com.robotraconteur.image', cam)
+	# Use companion util to decode images
+	img_util = ImageUtil(client_obj=cam)
 
 	#Connect the pipe FrameStream to get the PipeEndpoint p	
 	
