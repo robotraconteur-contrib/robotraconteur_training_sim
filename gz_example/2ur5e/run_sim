@@ -1,4 +1,6 @@
-SCRIPT=`realpath -s $0`
+#!/bin/bash
+
+SCRIPT="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 BASEDIR=`dirname $SCRIPT`
 
 cd $BASEDIR
